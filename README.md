@@ -6,16 +6,14 @@ No login. Mobile-first. Deployable on Vercel.
 
 ## Cards
 
-Edit `QNA.txt`. Separate cards with a line that is only `---`. First paragraph is the question; the rest is the answer.
+Edit `QNA.txt`. Each flashcard is one `Q:` line followed by one `A:` line.
 
 ```
-What is 2 + 2?
-4.
+Q: What is 2 + 2?
+A: 4.
 
----
-
-Name a primary color.
-Red, blue, or yellow.
+Q: Name a primary color.
+A: Red, blue, or yellow.
 ```
 
 ## Local

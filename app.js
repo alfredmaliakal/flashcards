@@ -11,26 +11,20 @@ let index = 0;
 let revealed = false;
 
 function parseCards(raw) {
-  return raw
-    .split(/\n---\n/)
-    .map((block) => block.trim())
-    .filter(Boolean)
-    .map((block) => {
-      const blank = block.search(/\n\s*\n/);
-      if (blank !== -1) {
-        return {
-          q: block.slice(0, blank).trim(),
-          a: block.slice(blank).trim(),
-        };
-      }
-      const nl = block.indexOf("\n");
-      if (nl === -1) return null;
-      return {
-        q: block.slice(0, nl).trim(),
-        a: block.slice(nl + 1).trim(),
-      };
-    })
-    .filter((card) => card && card.q && card.a);
+  const cards = [];
+  let question = "";
+
+  for (const line of raw.split(/\r?\n/)) {
+    if (line.startsWith("Q:")) {
+      question = line.slice(2).trim();
+    } else if (line.startsWith("A:") && question) {
+      const answer = line.slice(2).trim();
+      if (answer) cards.push({ q: question, a: answer });
+      question = "";
+    }
+  }
+
+  return cards;
 }
 
 function shuffle(items) {
