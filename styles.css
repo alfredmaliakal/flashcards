@@ -1,0 +1,139 @@
+:root {
+  --bg: #0f0f0d;
+  --fg: #eceae4;
+  --muted: #8a867c;
+  --line: #2a2926;
+  color-scheme: dark;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+  background: var(--bg);
+  color: var(--fg);
+  overflow: hidden;
+}
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  padding-top: env(safe-area-inset-top);
+  padding-right: env(safe-area-inset-right);
+  padding-left: env(safe-area-inset-left);
+}
+
+.top {
+  display: flex;
+  justify-content: center;
+  padding: 1.1rem 1.5rem 0.4rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  color: var(--muted);
+}
+
+.card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1.5rem 1.75rem 1.25rem;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  text-align: center;
+  cursor: pointer;
+  touch-action: pan-y;
+}
+
+.card:focus-visible {
+  outline: 1px solid var(--muted);
+  outline-offset: -8px;
+}
+
+.label {
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.4rem;
+}
+
+.text {
+  max-width: 28rem;
+  font-size: clamp(1.7rem, 7.2vw, 2.55rem);
+  line-height: 1.28;
+  font-weight: 400;
+  white-space: pre-wrap;
+}
+
+.hint {
+  margin-top: 2rem;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  min-height: 1.2em;
+}
+
+.hint.is-hidden {
+  visibility: hidden;
+}
+
+.bottom {
+  padding: 0.75rem 1.25rem calc(1.1rem + env(safe-area-inset-bottom));
+}
+
+.next {
+  display: block;
+  width: 100%;
+  max-width: 28rem;
+  margin: 0 auto;
+  height: 3.4rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--fg);
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 0.95rem;
+  letter-spacing: 0.16em;
+  text-transform: lowercase;
+  cursor: pointer;
+}
+
+.next:active {
+  background: #1a1916;
+}
+
+.next:focus-visible {
+  outline: 1px solid var(--fg);
+  outline-offset: 3px;
+}
+
+@media (min-width: 720px) {
+  .card {
+    padding: 2.5rem;
+  }
+
+  .text {
+    max-width: 34rem;
+  }
+}
