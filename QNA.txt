@@ -1,0 +1,2253 @@
+
+Q: What defines a Binary Search Tree?
+A: For every node, all values in the left subtree are smaller, and all values in the right subtree are larger. No duplicates in the standard definition.
+
+Q: What does inorder traversal of a BST produce?
+A: A sorted ascending sequence of values.
+
+Q: What are the three classic tree traversals?
+A: Preorder: root left right. Inorder: left root right. Postorder: left right root.
+
+Q: What is the time complexity of BST search in the average case?
+A: O log n, where n is the number of nodes.
+
+Q: What is the worst case time complexity of BST search?
+A: O n, when the tree is skewed and behaves like a linked list.
+
+Q: What is the height of a balanced BST with n nodes?
+A: O log n.
+
+Q: Name two self-balancing BSTs.
+A: AVL tree and Red-Black tree. Java's TreeMap uses Red-Black.
+
+Q: What is a skewed tree?
+A: A tree where every node has only one child, forming a straight line. Height equals n.
+
+Q: What is the difference between a complete and a full binary tree?
+A: Complete: all levels filled except possibly the last, filled left to right. Full: every node has 0 or 2 children.
+
+Q: What is the successor of a node in a BST?
+A: The smallest node larger than it. Go right once, then left as far as possible.
+
+Q: What is the predecessor of a node in a BST?
+A: The largest node smaller than it. Go left once, then right as far as possible.
+
+Q: What is a threaded binary tree?
+A: A tree where null child pointers are repurposed to point to inorder predecessor or successor.
+
+Q: What is the minimum and maximum number of nodes in a BST of height h?
+A: Minimum h plus 1 in a skewed tree. Maximum 2 to the power h plus 1 minus 1 for a perfect tree.
+
+Q: How do you validate a BST using recursion?
+A: Pass down min and max bounds. Each node must be within its parent's bounds. Left child updates max. Right child updates min.
+
+Q: How do you validate a BST using iteration?
+A: Simulate inorder traversal with a stack. Keep track of the previous value. Current must always be greater than previous.
+
+Q: Why is the iterative validate BST approach safer for deep trees?
+A: It uses an explicit stack on the heap instead of the call stack, avoiding StackOverflowError on skewed trees.
+
+Q: What is the Lowest Common Ancestor in a BST?
+A: The node where the two target values diverge. If both values are smaller than current node, go left. If both larger, go right. Otherwise current is the LCA.
+
+Q: Why is LCA easier in a BST than a regular binary tree?
+A: Because you can compare values to decide which subtree to search. In a regular binary tree you must search both subtrees.
+
+Q: How do you find the Kth smallest element in a BST?
+A: Inorder traversal. Count nodes as you visit them. Stop when count equals k.
+
+Q: What is the space complexity of Kth smallest using iterative inorder?
+A: O h for the stack, where h is height.
+
+Q: What is the Morris traversal approach for Kth smallest?
+A: Threaded tree technique with O 1 space. Temporarily link predecessor back to current during traversal.
+
+Q: What is the standard binary search template using left less than right?
+A: While left less than right, mid equals left plus right minus left divided by 2. If condition met, right equals mid, else left equals mid plus 1. Return left.
+
+Q: Why use left less than right instead of left less than or equal to right in binary search?
+A: It guarantees termination and avoids infinite loops. The loop ends with left equals right, which is the answer.
+
+Q: Why calculate mid as left plus right minus left divided by 2?
+A: To prevent integer overflow when left and right are large. Direct left plus right divided by 2 can overflow.
+
+Q: What is binary search on answer space?
+A: When the input is not sorted but the possible answer range is sorted. Example: minimum eating speed in Koko Eating Bananas.
+
+Q: What is the sliding window technique?
+A: Two pointers define a window that expands and contracts to maintain a condition. Used for contiguous subarray or substring problems.
+
+Q: In longest substring without repeating characters, what is the window constraint?
+A: All characters inside the window must be unique. Expand right pointer. If duplicate found, shrink left pointer past the previous occurrence.
+
+Q: What data structure tracks characters in the sliding window for substring problems?
+A: A HashSet for existence checks, or a HashMap for character to index mapping.
+
+Q: What is the time complexity of sliding window for longest substring?
+A: O n. Each character is visited at most twice, once by right pointer and once by left.
+
+Q: How do you solve Number of Islands?
+A: DFS or BFS from each unvisited land cell. Mark visited cells as water or use a visited set. Count how many times you start a new search.
+
+Q: Why can you mutate the input grid in Number of Islands?
+A: To mark visited cells as water by setting them to zero. This saves O n by m space for a visited matrix.
+
+Q: What is the time and space complexity of Number of Islands using DFS?
+A: Time O n times m. Space O n times m in worst case for the recursion stack if the grid is all land.
+
+Q: What is an LRU Cache?
+A: Least Recently Used cache with fixed capacity. Evicts the oldest accessed item when full.
+
+Q: What two data structures make up an LRU Cache?
+A: A HashMap for O 1 key lookup, and a Doubly Linked List for O 1 move and eviction order.
+
+Q: Why a doubly linked list and not a singly linked list for LRU?
+A: You need O 1 removal given a node reference. Singly linked lists require traversal to find the previous node.
+
+Q: What happens on a get operation in LRU Cache if the key exists?
+A: Move the node to the front or tail of the linked list to mark it as recently used. Return the value.
+
+Q: What happens on a put operation when the cache is at capacity?
+A: Evict the least recently used node from the tail or head of the list. Remove it from the HashMap. Insert the new key-value pair at the front.
+
+Q: What is the time complexity of LRU Cache get and put?
+A: O 1 for both operations.
+
+Q: What is the space complexity of an LRU Cache with capacity c?
+A: O c.
+
+Q: What Java class implements an LRU Cache for you?
+A: LinkedHashMap with accessOrder set to true and overriding removeEldestEntry.
+
+Q: What is the time complexity of HashMap get put and remove?
+A: O 1 average case. O n worst case if all keys hash to the same bucket.
+
+Q: What is the time complexity of TreeMap get put and remove?
+A: O log n guaranteed, because it is a Red-Black tree.
+
+Q: When do you choose TreeMap over HashMap?
+A: When you need sorted order, range queries, or ceiling and floor operations.
+
+Q: What is the time complexity of ArrayList get?
+A: O 1.
+
+Q: What is the time complexity of ArrayList add at the end?
+A: O 1 amortized. O n when resizing is needed.
+
+Q: What is the time complexity of LinkedList get by index?
+A: O n. You must traverse from head or tail.
+
+Q: What is the time complexity of LinkedList add at head or tail?
+A: O 1 if you have the head or tail reference.
+
+Q: What data structure backs a PriorityQueue in Java?
+A: A binary min-heap.
+
+Q: What is the time complexity of PriorityQueue offer and poll?
+A: O log n.
+
+Q: What is the time complexity of peek in a PriorityQueue?
+A: O 1.
+
+Q: What are the two common ways to represent a graph?
+A: Adjacency matrix and adjacency list.
+
+Q: When is an adjacency matrix better than an adjacency list?
+A: When the graph is dense or you need O 1 edge existence checks.
+
+Q: When is an adjacency list better than an adjacency matrix?
+A: When the graph is sparse. Space is O V plus E instead of O V squared.
+
+Q: What is the difference between BFS and DFS?
+A: BFS uses a queue and explores level by level. DFS uses a stack or recursion and explores as deep as possible first.
+
+Q: When does BFS find the shortest path?
+A: In an unweighted graph. The first time you reach a node is via the shortest path.
+
+Q: Why does DFS use less memory than BFS on a wide tree?
+A: DFS stack depth is O h. BFS queue can hold an entire level, up to O n over 2 for a complete binary tree.
+
+Q: What is a deque and why is it useful?
+A: Double-ended queue. Supports add and remove from both ends in O 1. Used in sliding window maximum problems.
+
+Q: What is a Trie?
+A: A prefix tree for efficient string storage and retrieval. Each node represents a character. Path from root to node forms a prefix.
+
+Q: What is the time complexity to insert or search a string of length m in a Trie?
+A: O m.
+
+Q: What is topological sort?
+A: Ordering of nodes in a directed acyclic graph such that for every edge u to v, u comes before v.
+
+Q: What algorithm finds topological sort?
+A: Kahn's algorithm using BFS and in-degree counting, or DFS with a post-order stack.
+
+Q: What is a Union-Find data structure?
+A: Disjoint set for tracking connected components. Supports find and union in nearly O 1 with path compression.
+
+Q: What is amortized time complexity?
+A: Average time per operation over a sequence. Example: ArrayList add is O 1 amortized even though occasional resizes are O n.
+
+Q: What is tail recursion?
+A: A recursive call that is the last operation in the function. Theoretically optimizable to iteration, but Java does not guarantee this optimization.
+
+Q: Why might iteration be preferred over recursion in production code?
+A: No risk of stack overflow, better performance due to no function call overhead, and easier to reason about state.
+
+Q: When is recursion clearly better for trees?
+A: When the problem is naturally divided into identical subproblems on subtrees, and code clarity matters more than micro-optimization.
+
+Q: What is memoization?
+A: Caching results of expensive function calls to avoid redundant computation. Top-down dynamic programming.
+
+Q: What is tabulation?
+A: Bottom-up dynamic programming. Fills a table iteratively without recursion.
+
+Q: What is the difference between a stack and a queue?
+A: Stack is LIFO last in first out. Queue is FIFO first in first out.
+
+Q: What is a min-heap vs a max-heap?
+A: Min-heap: parent is smaller than children. Max-heap: parent is larger than children.
+
+Q: How do you build a heap from an unsorted array?
+A: Heapify. Start from the last non-leaf node and sift down. Time O n.
+
+Q: What is a self-balancing binary search tree?
+A: A BST that automatically keeps its height small after insertions and deletions. Examples: AVL, Red-Black.
+
+Q: What is the balance factor in an AVL tree?
+A: Height of left subtree minus height of right subtree. Must be minus 1, 0, or 1.
+
+Q: What is a Red-Black tree?
+A: A self-balancing BST where each node is red or black. Root is black. No two reds in a row. Every path from a node to null has the same number of black nodes.
+
+Q: What is the load factor in a HashMap?
+A: The ratio of entries to buckets. When it exceeds a threshold, usually 0.75, the HashMap resizes.
+
+Q: What happens when a HashMap resizes?
+A: It creates a new larger array and rehashes all existing entries into the new buckets. This is the O n operation behind amortized O 1.
+
+Q: What is the difference between a HashSet and a TreeSet?
+A: HashSet uses a HashMap for O 1 operations with no ordering. TreeSet uses a TreeMap for O log n operations with sorted ordering.
+
+Q: What is a sentinel node in linked lists?
+A: A dummy node placed at the head or tail to simplify edge cases like empty lists or head removal.
+
+Q: What is backtracking?
+A: A form of DFS that explores all possible choices, and undoes the last choice when a dead end is reached. Example: N-Queens.
+
+Q: What is the difference between a complete tree and a perfect tree?
+A: Perfect: all internal nodes have two children and all leaves are at the same level. Complete: all levels filled except possibly the last, filled left to right.
+
+Q: What is the diameter of a binary tree?
+A: The longest path between any two nodes. It may or may not pass through the root.
+
+Q: What is path sum in a binary tree?
+A: The sum of node values along a path, typically root to leaf.
+
+Q: What are the three cases for deleting a node in a BST?
+A: Leaf node: simply remove. One child: replace with the child. Two children: replace with inorder successor or predecessor, then delete that successor or predecessor.
+
+Q: What is a range query in a BST?
+A: Finding all elements between a low and high value. You prune branches: if node value is less than low, only search right. If greater than high, only search left.
+
+Q: What is a segment tree?
+A: A tree for range queries and updates on an array. Each node stores an aggregate of a segment. Build O n. Query and update O log n.
+
+Q: What is a Fenwick tree or Binary Indexed Tree?
+A: A data structure for prefix sums and range queries with O log n update and query, using less space than a segment tree.
+
+Q: What is the difference between a graph and a tree?
+A: A tree is a connected acyclic graph. Graphs can have cycles and disconnected components.
+
+Q: What is a directed acyclic graph?
+A: A directed graph with no cycles. Required for topological sorting.
+
+Q: What is in-degree and out-degree in a directed graph?
+A: In-degree: number of edges entering a node. Out-degree: number of edges leaving a node.
+
+Q: What is a bipartite graph?
+A: A graph whose nodes can be divided into two sets such that no edge connects nodes within the same set. Checkable with BFS coloring.
+
+Q: What is Dijkstra's algorithm used for?
+A: Shortest path from a source to all nodes in a weighted graph with non-negative edges.
+
+Q: What is the time complexity of Dijkstra with a priority queue?
+A: O E log V.
+
+Q: Why does Dijkstra fail with negative edge weights?
+A: Because once a node is popped from the priority queue, its shortest distance is assumed final. Negative weights later could invalidate this.
+
+Q: What algorithm handles negative weights?
+A: Bellman-Ford. Time O V times E.
+
+Q: What is dynamic programming?
+A: Solving complex problems by breaking them into overlapping subproblems, solving each once, and storing the result.
+
+Q: What are the two properties a problem needs for dynamic programming?
+A: Optimal substructure and overlapping subproblems.
+
+Q: What is the knapsack problem?
+A: Given items with weights and values, maximize total value without exceeding weight capacity. Classic 0-1 DP.
+
+Q: What is the longest common subsequence problem?
+A: Find the longest sequence present in both strings in the same relative order but not necessarily contiguous.
+
+Q: What is the edit distance problem?
+A: Minimum number of insertions, deletions, and substitutions to transform one string into another.
+
+Q: What is a greedy algorithm?
+A: Makes the locally optimal choice at each step with the hope of finding a global optimum. Does not always yield the optimal solution.
+
+Q: When does a greedy algorithm work?
+A: When the problem has the greedy choice property and optimal substructure. Example: interval scheduling, minimum spanning tree.
+
+Q: What is Kruskal's algorithm?
+A: A greedy algorithm to find the minimum spanning tree by sorting edges by weight and adding them if they do not form a cycle. Uses Union-Find.
+
+Q: What is Prim's algorithm?
+A: A greedy algorithm to find the minimum spanning tree by growing the tree from an arbitrary start node, adding the cheapest edge connected to the tree.
+
+Q: What is a spanning tree?
+A: A subgraph that includes all vertices and is a tree, meaning it is connected and acyclic.
+
+Q: What is the handshake lemma in graph theory?
+A: The sum of all vertex degrees equals twice the number of edges.
+
+Q: What is Euler's formula for planar graphs?
+A: V minus E plus F equals 2, where V is vertices, E is edges, F is faces.
+
+Q: What is a clique in a graph?
+A: A subset of vertices where every two distinct vertices are adjacent.
+
+Q: What is an independent set in a graph?
+A: A set of vertices with no edges connecting any two of them.
+
+Q: What is memoization space complexity typically?
+A: O n for the memo table, plus O n for the recursion stack if using top-down.
+
+Q: What is the space complexity of bottom-up tabulation?
+A: Often O n for the DP array, but can sometimes be optimized to O 1 if only the previous state is needed.
+
+Q: What is the two-pointer technique?
+A: Using two indices, often starting at opposite ends or both at the start, to traverse a structure with O n time and O 1 space.
+
+Q: What is the fast and slow pointer technique?
+A: Two pointers moving at different speeds. Used to detect cycles in linked lists or find the middle element.
+
+Q: What is Floyd's cycle detection algorithm?
+A: Tortoise and hare. Move slow pointer by one and fast pointer by two. If they meet, a cycle exists.
+
+Q: What is a bit manipulation trick to check if a number is a power of two?
+A: n greater than 0 and n bitwise and n minus 1 equals 0.
+
+Q: What is the XOR of a number with itself?
+A: 0.
+
+Q: What is the XOR of a number with zero?
+A: The number itself.
+
+Q: What is the time complexity of merge sort?
+A: O n log n in all cases.
+
+Q: What is the space complexity of merge sort?
+A: O n for the auxiliary array.
+
+Q: What is the time complexity of quicksort in average and worst case?
+A: Average O n log n. Worst O n squared when the pivot is always the smallest or largest element.
+
+Q: How do you avoid worst case in quicksort?
+A: Randomized pivot selection, or median-of-three.
+
+Q: What is heap sort time and space complexity?
+A: Time O n log n. Space O 1 auxiliary.
+
+Q: What is counting sort?
+A: Non-comparison sort for integers with a known range. Time O n plus k where k is the range. Space O k.
+
+Q: What is radix sort?
+A: Sorts numbers digit by digit, using counting sort as a subroutine. Time O d times n plus k where d is digits.
+
+Q: What is stable sorting?
+A: A sort that preserves the relative order of equal elements. Merge sort and counting sort are stable. Quick sort is not stable by default.
+
+Q: What is the difference between a process and a thread?
+A: A process has its own memory space. Threads share the same memory space within a process. Context switching between threads is cheaper.
+
+Q: What is a race condition?
+A: When the outcome depends on the relative timing of events, such as two threads accessing shared data without synchronization.
+
+Q: What is a deadlock?
+A: When two or more threads are blocked forever, each waiting for a resource held by another.
+
+Q: What are the four Coffman conditions for deadlock?
+A: Mutual exclusion, hold and wait, no preemption, circular wait.
+
+Q: What is a semaphore?
+A: A synchronization primitive that controls access to a resource through permits. A mutex is a binary semaphore.
+
+Q: What is the difference between a mutex and a semaphore?
+A: A mutex allows only one thread to access a resource and must be released by the same thread. A semaphore can allow multiple threads and can be released by any thread.
+
+Q: What is a deadlock prevention strategy?
+A: Lock ordering: always acquire locks in a consistent global order to prevent circular wait.
+
+Q: What is the difference between TCP and UDP?
+A: TCP is connection-oriented, reliable, ordered delivery with congestion control. UDP is connectionless, unreliable, faster, no ordering guarantee.
+
+Q: What is the three-way handshake in TCP?
+A: SYN, SYN-ACK, ACK. Establishes a connection.
+
+Q: What is the time to live field in an IP packet?
+A: A counter that decrements at each hop. Prevents packets from circulating forever in routing loops.
+
+Q: What is a load balancer?
+A: Distributes incoming traffic across multiple servers to improve availability and scalability.
+
+Q: What are common load balancing algorithms?
+A: Round robin, least connections, IP hash, weighted round robin.
+
+Q: What is consistent hashing?
+A: A hashing technique that minimizes reorganization when the number of slots changes. Used in distributed caches like Memcached and DynamoDB.
+
+Q: What is a reverse proxy?
+A: A server that sits in front of web servers and forwards client requests to them. Examples: Nginx, HAProxy.
+
+Q: What is database indexing?
+A: A data structure, usually a B-Tree, that improves the speed of data retrieval at the cost of slower writes and more storage.
+
+Q: What is the difference between a primary key and a unique key?
+A: Primary key cannot be null and uniquely identifies a row. Unique key can have one null and enforces uniqueness.
+
+Q: What is database normalization?
+A: Organizing data to reduce redundancy and improve integrity. First normal form eliminates repeating groups. Third normal form eliminates transitive dependencies.
+
+Q: What is an ACID transaction?
+A: Atomicity, Consistency, Isolation, Durability. Guarantees reliable processing of database transactions.
+
+Q: What is the CAP theorem?
+A: In a distributed data store, you can only guarantee two of three: Consistency, Availability, Partition tolerance.
+
+Q: What is eventual consistency?
+A: A consistency model where updates propagate asynchronously. All replicas will eventually converge to the same value.
+
+Q: What is a distributed transaction?
+A: A transaction that spans multiple databases or services. Often handled with two-phase commit or sagas.
+
+Q: What is the difference between a monolith and microservices?
+A: Monolith is a single deployable unit. Microservices are independently deployable services that communicate over a network.
+
+Q: What is an API gateway?
+A: A single entry point for clients that routes requests to microservices, handles authentication, rate limiting, and response aggregation.
+
+Q: What is circuit breaker pattern?
+A: Prevents cascading failures in distributed systems. If a service fails repeatedly, the breaker opens and requests fail fast instead of waiting.
+
+Q: What is idempotency?
+A: An operation that produces the same result whether executed once or multiple times. Critical for retries in distributed systems.
+
+Q: What is a saga pattern?
+A: A sequence of local transactions where each service updates its data and publishes an event to trigger the next step. Compensating transactions handle failures.
+
+Q: What is the difference between REST and gRPC?
+A: REST uses HTTP and JSON, human-readable, stateless. gRPC uses HTTP2 and Protocol Buffers, binary, faster, supports streaming and strong typing.
+
+Q: What is GraphQL?
+A: A query language for APIs that allows clients to request exactly the fields they need, reducing over-fetching and under-fetching.
+
+Q: What is the N plus 1 query problem?
+A: Executing one query for the main data and then N additional queries for related data. Solved with joins or data loader batching.
+
+Q: What is caching and what are common eviction policies?
+A: Storing copies of data for fast access. Policies: LRU least recently used, LFU least frequently used, FIFO first in first out, TTL time to live.
+
+Q: What is a cache stampede?
+A: When a cached item expires and multiple requests simultaneously hit the database to regenerate it. Solved with locks, probabilistic early expiration, or single-flight pattern.
+
+Q: What is a content delivery network?
+A: A geographically distributed network of proxy servers that cache content closer to users to reduce latency.
+
+Q: What is horizontal vs vertical scaling?
+A: Horizontal: adding more machines. Vertical: adding more power to an existing machine. Horizontal is preferred for distributed systems.
+
+Q: What is sharding?
+A: Splitting a database into smaller pieces called shards, distributed across multiple servers, often by a shard key.
+
+Q: What is a hot shard?
+A: A shard that receives disproportionately more traffic than others, becoming a bottleneck.
+
+Q: What is MapReduce?
+A: A programming model for processing large datasets in parallel. Map phase filters and sorts. Reduce phase summarizes.
+
+Q: What is the difference between strong consistency and sequential consistency?
+A: Strong: all reads see the latest write. Sequential: all operations appear to execute in some sequential order consistent with each program's order.
+
+Q: What is a vector clock?
+A: A mechanism for determining the partial ordering of events in a distributed system and detecting causality violations.
+
+Q: What is the difference between authentication and authorization?
+A: Authentication verifies who you are. Authorization determines what you are allowed to do.
+
+Q: What is OAuth 2?
+A: An authorization framework that enables third-party applications to obtain limited access to a user's resources without exposing credentials.
+
+Q: What is a JWT?
+A: JSON Web Token. A compact, self-contained way to transmit information between parties as a JSON object, signed for verification.
+
+Q: What is the difference between symmetric and asymmetric encryption?
+A: Symmetric uses one key for both encryption and decryption. Asymmetric uses a public key to encrypt and a private key to decrypt.
+
+Q: What is HTTPS?
+A: HTTP over TLS. Encrypts the communication between client and server using asymmetric encryption for the handshake and symmetric for the data transfer.
+
+Q: What is a SQL injection attack?
+A: Injecting malicious SQL code through user input. Prevented with parameterized queries and ORM frameworks.
+
+Q: What is XSS cross-site scripting?
+A: Injecting malicious scripts into web pages viewed by other users. Prevented by sanitizing user input and using content security policies.
+
+Q: What is CSRF cross-site request forgery?
+A: Tricking a user's browser into performing unwanted actions on a trusted site where they are authenticated. Prevented with CSRF tokens.
+
+Q: What is rate limiting?
+A: Controlling the number of requests a client can make in a given time period to prevent abuse and ensure fair usage.
+
+Q: What is a bloom filter?
+A: A space-efficient probabilistic data structure used to test whether an element is a member of a set. False positives are possible, false negatives are not.
+
+Q: What is a skip list?
+A: A probabilistic data structure that allows fast search within an ordered sequence. Average O log n for search, insert, delete.
+
+Q: What is a hyperloglog?
+A: A probabilistic algorithm for counting distinct elements in a multiset using very little memory.
+
+Q: What is the difference between a deep copy and a shallow copy?
+A: Shallow copy duplicates the object but references the same nested objects. Deep copy duplicates everything recursively.
+
+Q: What is immutability and why is it useful?
+A: An object whose state cannot change after creation. Useful for thread safety, simpler reasoning, and preventing accidental modifications.
+
+Q: What is a memory leak?
+A: When memory that is no longer needed is not released, causing the application to consume increasing amounts of memory over time.
+
+Q: What is garbage collection?
+A: Automatic memory management that reclaims memory occupied by objects no longer in use. Java uses generational garbage collection.
+
+Q: What are the generations in Java's garbage collector?
+A: Young generation for new objects, old generation for long-lived objects, and permanent or metaspace for class metadata.
+
+Q: What is the difference between a strong reference and a weak reference in Java?
+A: Strong references prevent garbage collection. Weak references allow the object to be garbage collected when no strong references exist.
+
+Q: What is reflection in Java?
+A: The ability to inspect and modify classes, methods, and fields at runtime. Powerful but slow and breaks encapsulation.
+
+Q: What is the difference between compile-time and runtime polymorphism?
+A: Compile-time: method overloading. Runtime: method overriding.
+
+Q: What is the difference between an abstract class and an interface in Java?
+A: Abstract class can have state and constructors. Interface originally could not, but since Java 8 can have default and static methods.
+
+Q: What is the difference between final, finally, and finalize?
+A: Final: immutable variable or non-overridable method. Finally: block executed after try-catch. Finalize: method called by garbage collector before destruction, deprecated.
+
+Q: What is the difference between equals and hashCode?
+A: Equals checks logical equality. HashCode returns an integer for hashing. If two objects are equal, they must have the same hashCode.
+
+Q: What is the contract of compareTo?
+A: Returns negative if this object is less, zero if equal, positive if greater. Must be consistent with equals for sorted collections.
+
+Q: What is a deadlock in Java?
+A: When two or more threads are blocked forever, waiting for each other to release locks.
+
+Q: What is the volatile keyword in Java?
+A: Guarantees visibility of changes to variables across threads. Does not guarantee atomicity for compound operations.
+
+Q: What is the synchronized keyword in Java?
+A: Ensures that only one thread can execute a block of code or method on an object at a time.
+
+Q: What is a ReentrantLock?
+A: A mutual exclusion lock with the same basic behavior as synchronized but with extended capabilities like timed lock waits and fairness policies.
+
+Q: What is a CountDownLatch?
+A: A synchronization aid that allows one or more threads to wait until a set of operations being performed in other threads completes.
+
+Q: What is a CyclicBarrier?
+A: A synchronization aid that allows a set of threads to all wait for each other to reach a common barrier point.
+
+Q: What is CompletableFuture in Java?
+A: A class for asynchronous programming that supports chaining operations, combining futures, and handling exceptions without blocking.
+
+Q: What is the difference between Callable and Runnable?
+A: Callable returns a result and can throw a checked exception. Runnable does neither.
+
+Q: What is a thread pool and why use one?
+A: A managed collection of worker threads that reuse threads to execute tasks, reducing the overhead of thread creation.
+
+Q: What is the difference between submit and execute on an ExecutorService?
+A: Submit returns a Future. Execute returns void and is used for Runnable tasks.
+
+Q: What is the ForkJoinPool?
+A: A thread pool for divide-and-conquer algorithms. Uses work-stealing to balance load between threads.
+
+Q: What is a stream in Java?
+A: A sequence of elements supporting sequential and parallel aggregate operations like map, filter, and reduce.
+
+Q: What is the difference between intermediate and terminal operations in streams?
+A: Intermediate operations return a new stream and are lazy. Terminal operations produce a result or side effect and trigger processing.
+
+Q: What is lazy evaluation in streams?
+A: Operations are not executed until a terminal operation is invoked, allowing optimization like short-circuiting.
+
+Q: What is a lambda expression in Java?
+A: An anonymous function that can be passed around as a parameter. Provides a clear and concise way to represent one method interface.
+
+Q: What is a functional interface?
+A: An interface with exactly one abstract method. Examples: Runnable, Callable, Comparator, Predicate.
+
+Q: What is the difference between map and flatMap in streams?
+A: Map transforms each element into another element. FlatMap transforms each element into a stream and flattens the result into a single stream.
+
+Q: What is optional in Java?
+A: A container object that may or may not contain a non-null value. Helps avoid null pointer exceptions.
+
+Q: What is the builder pattern?
+A: A creational pattern that separates the construction of a complex object from its representation, allowing step-by-step construction.
+
+Q: What is the singleton pattern and what are its pitfalls?
+A: Ensures only one instance exists. Pitfalls: testing difficulty, hidden dependencies, thread safety issues without proper synchronization.
+
+Q: What is dependency injection?
+A: A design pattern where objects receive their dependencies from external sources rather than creating them internally. Promotes loose coupling.
+
+Q: What is inversion of control?
+A: A principle where the control of object creation and lifecycle is transferred to a container or framework, like Spring.
+
+Q: What is aspect-oriented programming?
+A: A programming paradigm that aims to increase modularity by allowing the separation of cross-cutting concerns like logging and transactions.
+
+Q: What is an ORM?
+A: Object-Relational Mapping. A technique that lets you query and manipulate data from a database using an object-oriented paradigm.
+
+Q: What is the difference between optimistic and pessimistic locking?
+A: Optimistic: no lock during read, check for conflicts before write. Pessimistic: lock the resource during the entire transaction.
+
+Q: What is database denormalization?
+A: Introducing redundancy into a database to improve read performance at the cost of write performance and storage.
+
+Q: What is an inverted index?
+A: A data structure that maps content like words to their locations in a document or set of documents. Core to search engines.
+
+Q: What is the difference between a relational and a NoSQL database?
+A: Relational uses tables with schemas and SQL. NoSQL uses flexible schemas like key-value, document, column-family, or graph stores.
+
+Q: What is eventual consistency in NoSQL?
+A: A model where updates to a database will propagate to all replicas over time, but reads may temporarily return stale data.
+
+Q: What is a materialized view?
+A: A database object that contains the results of a query, physically stored and refreshed periodically for fast reads.
+
+Q: What is an execution plan in SQL?
+A: A visual or textual representation of how the database engine will execute a query, showing index usage and join strategies.
+
+Q: What is the difference between a clustered and non-clustered index?
+A: Clustered determines the physical order of data. Non-clustered is a separate structure with pointers to the data.
+
+Q: What is a covering index?
+A: An index that includes all columns needed for a query, so the database does not need to look up the actual table.
+
+Q: What is the difference between a left join and an inner join?
+A: Inner join returns only matching rows. Left join returns all rows from the left table and matching rows from the right, nulls for non-matches.
+
+Q: What is a window function in SQL?
+A: A function that performs calculations across a set of table rows related to the current row, like row number or rank.
+
+Q: What is the difference between where and having in SQL?
+A: Where filters rows before grouping. Having filters groups after aggregation.
+
+Q: What is a stored procedure?
+A: A precompiled collection of SQL statements stored in the database, callable by name.
+
+Q: What is connection pooling?
+A: Caching database connections so they can be reused, avoiding the overhead of establishing a new connection per request.
+
+Q: What is the saga pattern in distributed transactions?
+A: A sequence of local transactions where each step publishes an event to trigger the next. Compensating transactions undo work on failure.
+
+Q: What is an event-driven architecture?
+A: A design where services communicate by producing and consuming events, typically through a message broker like Kafka.
+
+Q: What is Apache Kafka?
+A: A distributed event streaming platform used for building real-time data pipelines and streaming applications.
+
+Q: What is a Kafka topic?
+A: A category or feed name to which records are published. Topics are partitioned and replicated for scalability.
+
+Q: What is the difference between Kafka and RabbitMQ?
+A: Kafka is a log-based streaming platform with high throughput and persistence. RabbitMQ is a traditional message broker with complex routing.
+
+Q: What is Kubernetes?
+A: An open-source platform for automating the deployment, scaling, and management of containerized applications.
+
+Q: What is a Kubernetes pod?
+A: The smallest deployable unit in Kubernetes, containing one or more tightly coupled containers.
+
+Q: What is a Kubernetes service?
+A: An abstraction that defines a logical set of pods and a policy to access them, providing stable networking.
+
+Q: What is a Docker container?
+A: A lightweight, standalone, executable package that includes everything needed to run a piece of software.
+
+Q: What is the difference between a Docker image and a container?
+A: An image is a read-only template. A container is a running instance of an image.
+
+Q: What is CI/CD?
+A: Continuous Integration automates building and testing code changes. Continuous Delivery or Deployment automates releasing them.
+
+Q: What is blue-green deployment?
+A: A strategy with two identical environments. Traffic switches from the active blue environment to the updated green environment instantly.
+
+Q: What is canary deployment?
+A: Rolling out changes to a small subset of users first, monitoring for issues before full rollout.
+
+Q: What is infrastructure as code?
+A: Managing and provisioning infrastructure through machine-readable definition files rather than manual processes.
+
+Q: What is observability?
+A: The ability to understand the internal state of a system by examining its outputs: logs, metrics, and traces.
+
+Q: What is the difference between logging, metrics, and tracing?
+A: Logging: discrete events. Metrics: numeric data over time. Tracing: following a request across multiple services.
+
+Q: What is OpenTelemetry?
+A: An open-source observability framework for collecting traces, metrics, and logs from applications.
+
+Q: What is a runbook?
+A: A documented set of procedures for responding to alerts and incidents in production.
+
+Q: What is an SLO?
+A: Service Level Objective. A target for system reliability, like 99.9 percent uptime.
+
+Q: What is an SLA?
+A: Service Level Agreement. A contractual commitment to customers, often stricter than internal SLOs.
+
+Q: What is an error budget?
+A: The acceptable amount of unreliability derived from the SLO. When exhausted, new feature work stops in favor of reliability.
+
+Q: What is a post-mortem?
+A: A blameless analysis of an incident to identify root causes and prevent recurrence.
+
+Q: What is the difference between latency and throughput?
+A: Latency is the time to process a single request. Throughput is the number of requests processed per unit time.
+
+Q: What is tail latency?
+A: The latency experienced by the slowest requests, like the 99th percentile, often more important than average latency.
+
+Q: What is backpressure?
+A: A mechanism where a downstream system signals an upstream system to slow down when it is overwhelmed.
+
+Q: What is a circuit breaker?
+A: A pattern that stops calling a failing service after a threshold, returning a fallback instead to prevent cascading failures.
+
+Q: What is bulkheading?
+A: Isolating failures by partitioning resources so that a failure in one partition does not exhaust resources for others.
+
+Q: What is timeout vs deadline?
+A: Timeout: how long to wait for a single operation. Deadline: the absolute time by which an entire request must complete.
+
+Q: What is idempotency in HTTP methods?
+A: GET, PUT, DELETE are idempotent. POST is not. Calling an idempotent method multiple times has the same effect as once.
+
+Q: What is the difference between PUT and PATCH?
+A: PUT replaces the entire resource. PATCH applies partial modifications.
+
+Q: What is a RESTful API?
+A: An API that uses HTTP methods and stateless communication, with resources identified by URIs.
+
+Q: What is HATEOAS?
+A: Hypermedia as the Engine of Application State. A REST constraint where responses include links to related resources.
+
+Q: What is gRPC?
+A: A high-performance RPC framework using Protocol Buffers and HTTP2, supporting streaming and bidirectional communication.
+
+Q: What is Protocol Buffers?
+A: A language-neutral, platform-neutral mechanism for serializing structured data, smaller and faster than JSON.
+
+Q: What is GraphQL's N plus 1 problem?
+A: Resolving a list of items and then making a separate database query for each item's related field.
+
+Q: What is a data loader?
+A: A utility for batching and caching related field lookups in GraphQL to solve the N plus 1 problem.
+
+Q: What is the difference between authentication and authorization?
+A: Authentication verifies identity. Authorization determines permissions.
+
+Q: What is OAuth2 and OpenID Connect?
+A: OAuth2 handles authorization. OpenID Connect is an identity layer on top of OAuth2 for authentication.
+
+Q: What is a man-in-the-middle attack?
+A: An attacker secretly intercepts and potentially alters communication between two parties.
+
+Q: What is public key infrastructure?
+A: A system of digital certificates, certificate authorities, and registration authorities that verify and authenticate identities.
+
+Q: What is the difference between unit tests and integration tests?
+A: Unit tests isolate a single component with mocks. Integration tests verify that multiple components work together.
+
+Q: What is test-driven development?
+A: Writing tests before writing the implementation code, following red-green-refactor cycles.
+
+Q: What is mocking in unit testing?
+A: Replacing real dependencies with simulated objects to control behavior and verify interactions.
+
+Q: What is code coverage?
+A: A metric indicating what percentage of code is executed by tests. High coverage does not guarantee correctness.
+
+Q: What is the difference between black box and white box testing?
+A: Black box tests functionality without knowing internal structure. White box tests internal logic and paths.
+
+Q: What is A-B testing?
+A: Comparing two versions of a product by randomly splitting users to determine which performs better.
+
+Q: What is feature flagging?
+A: Enabling or disabling features dynamically without deploying new code, useful for gradual rollouts and quick rollbacks.
+
+Q: What is technical debt?
+A: The implied cost of additional rework caused by choosing an easy solution now instead of a better approach that would take longer.
+
+Q: What is refactoring?
+A: Restructuring existing code without changing its external behavior to improve readability and maintainability.
+
+Q: What is the single responsibility principle?
+A: A class or module should have one, and only one, reason to change.
+
+Q: What is the open-closed principle?
+A: Software entities should be open for extension but closed for modification.
+
+Q: What is the Liskov substitution principle?
+A: Subtypes must be substitutable for their base types without altering the correctness of the program.
+
+Q: What is the interface segregation principle?
+A: Clients should not be forced to depend on interfaces they do not use.
+
+Q: What is the dependency inversion principle?
+A: Depend on abstractions, not concretions. High-level modules should not depend on low-level modules.
+
+Q: What is clean code?
+A: Code that is easy to understand, easy to change, well-tested, and free of duplication.
+
+Q: What is the difference between cohesion and coupling?
+A: Cohesion measures how related the responsibilities within a module are. Coupling measures dependency between modules. High cohesion and low coupling are goals.
+
+Q: What is an architectural decision record?
+A: A document that captures an important architectural decision made along with its context and consequences.
+
+Q: What is domain-driven design?
+A: An approach to software development that centers the design on the business domain, using bounded contexts and ubiquitous language.
+
+Q: What is a bounded context?
+A: A central pattern in domain-driven design that defines the boundaries of a domain model to avoid ambiguity.
+
+Q: What is CQRS?
+A: Command Query Responsibility Segregation. Separates read and write operations into different models for optimization.
+
+Q: What is event sourcing?
+A: Storing the state of a system as a sequence of events, allowing reconstruction of state by replaying events.
+
+Q: What is the strangler fig pattern?
+A: Incrementally migrating a legacy system by gradually replacing specific pieces of functionality with new applications.
+
+Q: What is a data mesh?
+A: An architectural paradigm that treats data as a product, with decentralized ownership by domain teams.
+
+Q: What is the CAP theorem in practice?
+A: During a network partition, you must choose between consistency and availability. Most systems choose availability with eventual consistency.
+
+Q: What is a vector database?
+A: A database optimized for storing and querying high-dimensional vectors, used in similarity search and embeddings.
+
+Q: What is an embedding in machine learning?
+A: A numerical representation of data like text or images in a high-dimensional space where similar items are closer together.
+
+Q: What is a recommendation system?
+A: A system that predicts user preferences to suggest items, using collaborative filtering, content-based filtering, or hybrid approaches.
+
+Q: What is collaborative filtering?
+A: Making recommendations based on the behavior and preferences of similar users.
+
+Q: What is content-based filtering?
+A: Making recommendations based on the attributes of items a user has liked in the past.
+
+Q: What is the cold start problem?
+A: The challenge of making recommendations for new users or new items with no historical interaction data.
+
+Q: What is pairwise loss in ranking models?
+A: A loss function that optimizes the relative ordering of item pairs rather than absolute relevance scores, often used in learning to rank.
+
+Q: What is a knowledge graph?
+A: A network of real-world entities and their relationships, used to enhance search and recommendations with structured semantics.
+
+Q: What is the difference between a monorepo and polyrepo?
+A: Monorepo stores all code in one repository. Polyrepo splits code into multiple repositories, often per service.
+
+Q: What is trunk-based development?
+A: A branching model where developers merge small, frequent changes directly to the main branch, minimizing long-lived branches.
+
+Q: What is Git rebase vs merge?
+A: Rebase rewrites history to create a linear commit sequence. Merge preserves history with a merge commit. Rebase is cleaner for private branches.
+
+Q: What is a commit hash in Git?
+A: A SHA1 hash that uniquely identifies a commit based on its content and parent pointers.
+
+Q: What is a Git hook?
+A: A script that Git executes before or after events like commits, pushes, or merges, used for validation and automation.
+
+Q: What is semantic versioning?
+A: A versioning scheme in the form major minor patch. Major for breaking changes, minor for features, patch for fixes.
+
+Q: What is a package manager?
+A: A tool that automates the process of installing, upgrading, configuring, and removing software dependencies.
+
+Q: What is the difference between a library and a framework?
+A: A library is code you call. A framework calls your code, inverting control.
+
+Q: What is dependency hell?
+A: The problem of managing conflicting version requirements between transitive dependencies in a project.
+
+Q: What is vendoring?
+A: Including copies of external dependencies directly in your project repository to ensure reproducible builds.
+
+Q: What is a service mesh?
+A: A dedicated infrastructure layer for handling service-to-service communication, providing observability, security, and traffic management.
+
+Q: What is a sidecar pattern?
+A: A pattern where auxiliary functionality like logging or proxying is deployed alongside the main application in the same pod.
+
+Q: What is serverless computing?
+A: A cloud model where the provider manages the infrastructure and automatically scales resources, charging only for execution time.
+
+Q: What are cold starts in serverless?
+A: The latency incurred when a serverless function is invoked after being idle, due to container initialization.
+
+Q: What is edge computing?
+A: Processing data near the source of generation rather than in a centralized cloud, reducing latency and bandwidth.
+
+Q: What is a webhook?
+A: An HTTP callback triggered by an event, allowing real-time notifications between systems.
+
+Q: What is polling vs pushing?
+A: Polling: client repeatedly checks server for updates. Pushing: server sends updates to client when available. Pushing is more efficient.
+
+Q: What is long polling?
+A: A variation of polling where the server holds the request open until new data is available, reducing empty responses.
+
+Q: What is Server-Sent Events?
+A: A one-way server-to-client push mechanism over HTTP, suitable for real-time updates like notifications.
+
+Q: What is WebSocket?
+A: A protocol providing full-duplex communication over a single TCP connection, enabling real-time bidirectional data flow.
+
+Q: What is the difference between TCP and HTTP?
+A: TCP is a transport layer protocol for reliable data transfer. HTTP is an application layer protocol built on top of TCP for web communication.
+
+Q: What is a reverse proxy vs a forward proxy?
+A: Forward proxy sits in front of clients to access external resources. Reverse proxy sits in front of servers to handle client requests.
+
+Q: What is a firewall?
+A: A network security system that monitors and controls incoming and outgoing traffic based on predetermined rules.
+
+Q: What is a VPN?
+A: A virtual private network that extends a private network across a public network, enabling secure remote access.
+
+Q: What is DNS and how does it work?
+A: Domain Name System translates human-readable domain names into IP addresses using a hierarchical distributed database.
+
+Q: What is a CDN edge server?
+A: A server at the edge of a CDN network, geographically close to end users, that caches content for fast delivery.
+
+Q: What is the difference between horizontal and vertical partitioning in databases?
+A: Horizontal partitioning or sharding splits rows across servers. Vertical partitioning splits columns across servers.
+
+Q: What is an ORM N plus 1 query and how do you fix it?
+A: Fetching a list and then querying related data for each item. Fix with eager loading, joins, or a data loader pattern.
+
+Q: What is database connection leaking?
+A: Opening connections without closing them, exhausting the connection pool and causing application failures.
+
+Q: What is a prepared statement?
+A: A precompiled SQL statement with placeholders for parameters, improving performance and preventing SQL injection.
+
+Q: What is optimistic locking with a version number?
+A: Each row has a version column. On update, check if the version matches. If not, another transaction modified the row.
+
+Q: What is a composite index?
+A: An index on multiple columns. Column order matters; queries must use the leading columns to benefit.
+
+Q: What is index selectivity?
+A: The ratio of distinct values to total rows. High selectivity means the index is more effective at filtering rows.
+
+Q: What is a full table scan?
+A: When the database reads every row in a table to satisfy a query, usually because no suitable index exists.
+
+Q: What is the difference between truncate and delete in SQL?
+A: Delete removes rows one by one and can be rolled back. Truncate is faster, deallocates pages, and cannot be rolled back in most databases.
+
+Q: What is a savepoint in a transaction?
+A: A point within a transaction to which you can roll back without undoing the entire transaction.
+
+Q: What is two-phase commit?
+A: A distributed transaction protocol where all participants vote to commit in phase one, then actually commit in phase two.
+
+Q: What is the difference between a message queue and a pub-sub system?
+A: Message queue: one consumer per message. Pub-sub: multiple subscribers receive the same message.
+
+Q: What is Apache ZooKeeper?
+A: A centralized service for maintaining configuration, naming, and providing distributed synchronization.
+
+Q: What is the Raft consensus algorithm?
+A: A consensus algorithm for managing a replicated log, easier to understand than Paxos. Used in systems like etcd and Consul.
+
+Q: What is etcd?
+A: A distributed reliable key-value store used for configuration management and service discovery in Kubernetes.
+
+Q: What is a liveness probe in Kubernetes?
+A: A health check that determines if a container is running. If it fails, the container is restarted.
+
+Q: What is a readiness probe in Kubernetes?
+A: A health check that determines if a container is ready to accept traffic. If it fails, the pod is removed from service endpoints.
+
+Q: What is Helm?
+A: A package manager for Kubernetes that simplifies deployment and management of applications using charts.
+
+Q: What is a Kubernetes ConfigMap?
+A: A mechanism to inject configuration data into pods, decoupling configuration from container images.
+
+Q: What is a Kubernetes Secret?
+A: An object for storing sensitive data like passwords and tokens, base64 encoded but not encrypted by default at rest.
+
+Q: What is a persistent volume in Kubernetes?
+A: A piece of storage in the cluster that has been provisioned by an administrator or dynamically provisioned.
+
+Q: What is the difference between a stateful and stateless service?
+A: Stateless services do not retain client data between requests. Stateful services maintain session or data across requests.
+
+Q: What is session affinity or sticky sessions?
+A: Routing requests from the same client to the same backend server, necessary for stateful applications.
+
+Q: What is a distributed cache?
+A: A cache spread across multiple nodes, often using consistent hashing to locate data. Examples: Redis Cluster, Memcached.
+
+Q: What is cache invalidation?
+A: Removing or updating cached data when the underlying data changes. One of the two hard things in computer science.
+
+Q: What is write-through caching?
+A: Data is written to both the cache and the backing store simultaneously.
+
+Q: What is write-back caching?
+A: Data is written to the cache first and asynchronously written to the backing store later. Faster but riskier.
+
+Q: What is a cache aside or lazy loading pattern?
+A: Application checks cache first. On miss, loads from database, then populates cache.
+
+Q: What is read-through caching?
+A: The cache itself manages loading data from the backing store on a miss, transparent to the application.
+
+Q: What is a thundering herd?
+A: When many processes simultaneously request a resource that is not cached, overwhelming the backend. Solved with locks or single-flight.
+
+Q: What is request coalescing?
+A: Combining multiple identical requests into one backend request, reducing load.
+
+Q: What is a poison pill message?
+A: A message that cannot be processed and causes the consumer to fail repeatedly. Solved with dead letter queues.
+
+Q: What is a dead letter queue?
+A: A queue for messages that could not be processed successfully after retries, allowing inspection without blocking the main queue.
+
+Q: What is idempotency key?
+A: A unique identifier sent with a request so the server can recognize duplicates and process the request only once.
+
+Q: What is the difference between at-least-once and exactly-once delivery?
+A: At-least-once may duplicate messages. Exactly-once ensures no duplicates, typically with idempotency and deduplication.
+
+Q: What is a watermark in stream processing?
+A: A timestamp that indicates when all events up to that time are expected to have arrived, allowing windowed operations to proceed.
+
+Q: What is late data in stream processing?
+A: Events that arrive after the watermark for their time window. Handled with side outputs or allowed lateness.
+
+Q: What is the lambda architecture?
+A: A data processing architecture with a batch layer for accuracy and a speed layer for real-time approximations.
+
+Q: What is the kappa architecture?
+A: A simplification of lambda that uses only stream processing, treating everything as a stream.
+
+Q: What is change data capture?
+A: A pattern for tracking changes in a database and propagating them to other systems in real time.
+
+Q: What is an outbox pattern?
+A: A transactional pattern where events are written to an outbox table in the same database transaction as the business data, then published asynchronously.
+
+Q: What is eventual consistency vs strong consistency in distributed systems?
+A: Strong consistency guarantees all reads see the latest write. Eventual consistency guarantees reads will eventually see writes if no new updates occur.
+
+Q: What is a consensus protocol?
+A: A mechanism for distributed nodes to agree on a single value or state despite failures.
+
+Q: What is the Byzantine Generals Problem?
+A: A scenario where nodes must agree on a strategy but some nodes may be faulty or malicious. Solved by Byzantine fault-tolerant algorithms.
+
+Q: What is a quorum in distributed systems?
+A: The minimum number of nodes that must participate in an operation to ensure consistency and availability.
+
+Q: What is the difference between synchronous and asynchronous replication?
+A: Synchronous: primary waits for acknowledgments from replicas before confirming writes. Asynchronous: primary confirms immediately and replicates in the background.
+
+Q: What is a split-brain scenario?
+A: When network partitions cause multiple nodes to believe they are the primary, leading to conflicting writes.
+
+Q: What is fencing in distributed systems?
+A: A mechanism to prevent a failed primary from interfering after a new primary has been elected.
+
+Q: What is a hot standby?
+A: A replica that is actively receiving updates and can take over immediately if the primary fails.
+
+Q: What is warm standby?
+A: A replica that is available but may need a short time to catch up before taking over.
+
+Q: What is cold standby?
+A: A backup system that is not running and requires significant time to start and restore data.
+
+Q: What is disaster recovery?
+A: The process of restoring systems and data after a catastrophic failure, measured by RTO and RPO.
+
+Q: What is RTO and RPO?
+A: Recovery Time Objective: how fast you must restore. Recovery Point Objective: how much data loss is acceptable.
+
+Q: What is chaos engineering?
+A: The practice of intentionally introducing failures into a system to test and improve its resilience.
+
+Q: What is a game day?
+A: A scheduled exercise where a team simulates a failure scenario to practice incident response.
+
+Q: What is a blameless postmortem?
+A: An incident review focused on systemic causes and process improvements rather than individual fault.
+
+Q: What is toil?
+A: Manual, repetitive, automatable operational work that scales linearly with service size.
+
+Q: What is SRE?
+A: Site Reliability Engineering. Applying software engineering practices to operations to create scalable and reliable systems.
+
+Q: What is an error budget policy?
+A: A policy that halts feature launches and prioritizes reliability work when the error budget is depleted.
+
+Q: What is MTTR and MTBF?
+A: Mean Time To Recovery: average time to fix a failure. Mean Time Between Failures: average time between system failures.
+
+Q: What is a runbook automation?
+A: Automating operational procedures that were previously manual, reducing response time and human error.
+
+Q: What is a golden signal in monitoring?
+A: Latency, traffic, errors, and saturation. The four key metrics for understanding system health.
+
+Q: What is RED methodology?
+A: Rate, Errors, Duration. A monitoring framework for request-based services.
+
+Q: What is USE methodology?
+A: Utilization, Saturation, Errors. A monitoring framework for resource-based systems.
+
+Q: What is distributed tracing?
+A: Tracking a request as it flows through multiple services, correlating spans with a unique trace ID.
+
+Q: What is a span in distributed tracing?
+A: A single operation within a trace, with a start time, duration, and optional tags and logs.
+
+Q: What is tail-based sampling?
+A: Deciding whether to keep a trace after it has completed, based on whether it contained an error or high latency.
+
+Q: What is head-based sampling?
+A: Deciding whether to trace a request at the start, usually with a fixed percentage.
+
+Q: What is structured logging?
+A: Logging in a machine-readable format like JSON, making it easier to query and analyze.
+
+Q: What is log aggregation?
+A: Collecting logs from multiple sources into a centralized system for search and analysis.
+
+Q: What is a metrics time series?
+A: A sequence of data points indexed in time order, representing how a metric changes over time.
+
+Q: What is cardinality in metrics?
+A: The number of unique time series. High cardinality, like user ID labels, can overwhelm metric storage.
+
+Q: What is a histogram vs a summary in metrics?
+A: Histogram buckets observations into predefined ranges. Summary calculates quantiles over a sliding time window.
+
+Q: What is log-based messaging?
+A: A messaging pattern where messages are appended to a durable log, and consumers read from an offset. Kafka uses this.
+
+Q: What is consumer lag in Kafka?
+A: The difference between the latest message offset and the consumer's current offset. High lag indicates slow processing.
+
+Q: What is a consumer group in Kafka?
+A: A set of consumers that jointly consume a topic, with partitions distributed among them for parallelism.
+
+Q: What is partition rebalancing in Kafka?
+A: The process of redistributing partitions among consumers when a consumer joins or leaves the group.
+
+Q: What is log compaction in Kafka?
+A: Retaining only the latest value for each key in a topic, turning it into a changelog-like store.
+
+Q: What is a schema registry?
+A: A service that manages schemas for messages, ensuring compatibility between producers and consumers. Examples: Confluent Schema Registry.
+
+Q: What is backward compatibility in schemas?
+A: New schema can read data written by old schema.
+
+Q: What is forward compatibility in schemas?
+A: Old schema can read data written by new schema.
+
+Q: What is full compatibility in schemas?
+A: Both backward and forward compatibility.
+
+Q: What is a data contract?
+A: An agreement between producer and consumer on the structure and semantics of data exchanged between services.
+
+Q: What is API versioning?
+A: Managing changes to an API by releasing new versions to avoid breaking existing consumers.
+
+Q: What is backward-compatible API change?
+A: Adding optional fields or endpoints without breaking existing clients.
+
+Q: What is a breaking API change?
+A: Removing fields, changing types, or altering behavior in a way that requires clients to update.
+
+Q: What is consumer-driven contract testing?
+A: Testing that a provider's API satisfies the expectations of its consumers, often using tools like Pact.
+
+Q: What is a canary analysis?
+A: Automated evaluation of a canary deployment by comparing metrics between the baseline and the canary.
+
+Q: What is a rollback?
+A: Reverting a deployment to a previous stable version when issues are detected.
+
+Q: What is feature toggle?
+A: A runtime configuration that enables or disables a feature without code deployment.
+
+Q: What is dark launching?
+A: Deploying a new feature to production but routing no user traffic to it, testing it under real conditions first.
+
+Q: What is a shadow traffic test?
+A: Mirroring production traffic to a new service version without affecting users, to test performance and correctness.
+
+Q: What is load testing?
+A: Testing system behavior under expected load to identify bottlenecks.
+
+Q: What is stress testing?
+A: Testing system behavior under extreme load to find breaking points.
+
+Q: What is chaos monkey?
+A: A tool that randomly terminates production instances to test system resilience.
+
+Q: What is a bulkhead in software architecture?
+A: Isolating components so that a failure in one does not cascade to others, like separate thread pools per dependency.
+
+Q: What is rate limiting algorithm token bucket?
+A: Tokens are added to a bucket at a fixed rate. A request consumes a token. If the bucket is empty, the request is rejected.
+
+Q: What is rate limiting algorithm leaky bucket?
+A: Requests enter a queue and are processed at a fixed rate, smoothing out bursts.
+
+Q: What is fixed window rate limiting?
+A: Counting requests in fixed time windows. Simple but can allow bursts at window boundaries.
+
+Q: What is sliding window rate limiting?
+A: Counting requests over a rolling time window, providing smoother rate limiting but requiring more state.
+
+Q: What is exponential backoff?
+A: Increasing the wait time between retries exponentially to avoid overwhelming a failing service.
+
+Q: What is jitter in retry logic?
+A: Adding randomness to retry intervals to prevent synchronized retries from multiple clients.
+
+Q: What is a health check endpoint?
+A: An endpoint that reports whether a service is running and ready to handle requests.
+
+Q: What is deep health check vs shallow health check?
+A: Shallow checks the process is running. Deep checks dependencies like databases and downstream services.
+
+Q: What is graceful degradation?
+A: Reducing functionality when resources are limited rather than failing completely.
+
+Q: What is a fallback in resilience patterns?
+A: An alternative response returned when a service call fails, like cached data or a default value.
+
+Q: What is retry storm?
+A: When many clients retry failed requests simultaneously, amplifying the load and potentially causing an outage.
+
+Q: What is a timeout budget?
+A: The total time allocated for a request across all downstream calls, with each call getting a portion.
+
+Q: What is speculative execution?
+A: Sending the same request to multiple replicas and using the fastest response, trading resources for latency.
+
+Q: What is a leader election?
+A: The process of selecting one node as the coordinator in a distributed system, often using consensus algorithms.
+
+Q: What is a distributed lock?
+A: A mechanism to ensure only one node performs an operation at a time, often implemented with Redis or ZooKeeper.
+
+Q: What is the Redlock algorithm?
+A: A distributed locking algorithm using multiple Redis instances to improve reliability.
+
+Q: What is a saga orchestrator?
+A: A central coordinator that manages the sequence of transactions and compensations in a saga pattern.
+
+Q: What is a saga choreography?
+A: A decentralized saga where each service completes its local transaction and publishes an event to trigger the next service.
+
+Q: What is the difference between orchestration and choreography?
+A: Orchestration has a central controller. Choreography has services reacting to events independently.
+
+Q: What is an anti-corruption layer?
+A: A layer that translates between a legacy system and a new domain model, preventing the legacy model from corrupting the new design.
+
+Q: What is a strangler fig application?
+A: A new application that gradually replaces a legacy system by intercepting and redirecting traffic piece by piece.
+
+Q: What is a polyglot persistence architecture?
+A: Using different database technologies for different data needs within the same application.
+
+Q: What is a data lake?
+A: A centralized repository that stores structured, semi-structured, and unstructured data at scale.
+
+Q: What is a data warehouse?
+A: A structured repository optimized for querying and analysis, typically using dimensional modeling.
+
+Q: What is ETL?
+A: Extract, Transform, Load. The process of moving data from sources to a warehouse.
+
+Q: What is ELT?
+A: Extract, Load, Transform. Loading raw data first and transforming it in the warehouse, common in cloud architectures.
+
+Q: What is stream processing?
+A: Processing data in real time as it arrives, rather than in scheduled batches.
+
+Q: What is batch processing?
+A: Processing large volumes of data collected over a period at scheduled intervals.
+
+Q: What is a micro-batch?
+A: A hybrid approach that processes data in very small batches to approximate stream processing.
+
+Q: What is Apache Spark?
+A: A unified analytics engine for large-scale data processing, supporting batch and stream processing.
+
+Q: What is a resilient distributed dataset?
+A: Spark's fundamental data structure, an immutable distributed collection of objects that can be processed in parallel.
+
+Q: What is lazy evaluation in Spark?
+A: Transformations on RDDs are not executed until an action is called, allowing optimization of the execution plan.
+
+Q: What is a shuffle in Spark?
+A: The expensive operation of redistributing data across partitions, often caused by wide transformations like groupByKey.
+
+Q: What is data locality in Spark?
+A: Scheduling tasks on nodes that already hold the data to minimize network transfer.
+
+Q: What is Apache Flink?
+A: A stream processing framework with true event-time processing and stateful computations.
+
+Q: What is event time vs processing time?
+A: Event time is when the event occurred. Processing time is when the system processes it. Event time handles out-of-order data.
+
+Q: What is a tumbling window?
+A: A fixed-size, non-overlapping time window for aggregating stream data.
+
+Q: What is a sliding window?
+A: A fixed-size window that moves forward by a specified interval, allowing overlap.
+
+Q: What is a session window?
+A: A dynamic window that groups events by periods of activity, closing after a gap of inactivity.
+
+Q: What is stateful stream processing?
+A: Processing that maintains and updates state across events, like running counts or aggregations.
+
+Q: What is checkpointing in stream processing?
+A: Periodically saving the state of a job to durable storage to enable recovery from failures.
+
+Q: What is exactly-once semantics in stream processing?
+A: Guaranteeing that each event affects the state exactly once, typically through idempotent writes or transactional updates.
+
+Q: What is the difference between a data engineer and a data scientist?
+A: Data engineers build pipelines and infrastructure. Data scientists build models and analyze data.
+
+Q: What is MLOps?
+A: Practices for deploying, monitoring, and managing machine learning models in production.
+
+Q: What is model drift?
+A: When a model's performance degrades over time because the input data distribution changes.
+
+Q: What is A-B testing in machine learning?
+A: Comparing model variants by randomly splitting traffic to measure which performs better on business metrics.
+
+Q: What is feature engineering?
+A: The process of creating new input variables from raw data to improve model performance.
+
+Q: What is one-hot encoding?
+A: Representing categorical variables as binary vectors where only one element is active.
+
+Q: What is embedding in the context of search and recommendations?
+A: A dense vector representation of users or items that captures semantic similarity in a latent space.
+
+Q: What is cosine similarity?
+A: A measure of similarity between two vectors based on the cosine of the angle between them.
+
+Q: What is a nearest neighbor search?
+A: Finding the closest vectors in a high-dimensional space, often accelerated with approximate algorithms like HNSW.
+
+Q: What is HNSW?
+A: Hierarchical Navigable Small World. A graph-based algorithm for fast approximate nearest neighbor search.
+
+Q: What is inverted index in search?
+A: A mapping from terms to the documents containing them, enabling fast full-text search.
+
+Q: What is TF-IDF?
+A: Term Frequency-Inverse Document Frequency. A weighting scheme that reflects how important a word is to a document in a corpus.
+
+Q: What is BM25?
+A: A probabilistic ranking function used in information retrieval that improves upon TF-IDF.
+
+Q: What is a learning-to-rank model?
+A: A machine learning model trained to order items by relevance, using pairwise or listwise loss functions.
+
+Q: What is pairwise loss?
+A: A loss function that optimizes the relative ranking of pairs of items, like if item A should be above item B.
+
+Q: What is listwise loss?
+A: A loss function that optimizes the ordering of an entire list of items at once.
+
+Q: What is a knowledge graph embedding?
+A: A vector representation of entities and relations in a knowledge graph, used for reasoning and link prediction.
+
+Q: What is GraphQL introspection?
+A: The ability to query the schema of a GraphQL API to discover available types, fields, and operations.
+
+Q: What is a resolver in GraphQL?
+A: A function that resolves a field in a GraphQL schema by fetching the corresponding data.
+
+Q: What is schema stitching?
+A: Combining multiple GraphQL schemas into a single unified schema.
+
+Q: What is federation in GraphQL?
+A: A way to compose multiple GraphQL services into one graph, where each service owns part of the schema.
+
+Q: What is a Dataloader in GraphQL?
+A: A utility for batching and caching field-level fetches to solve the N plus 1
+
+Q: When should you choose recursion over iteration for tree problems?
+A: Use recursion when the problem divides naturally into identical subproblems on subtrees and code clarity matters more than micro-optimization. Trees are inherently recursive structures.
+
+Q: When should you prefer iteration over recursion for tree problems?
+A: Use iteration with an explicit stack or queue when tree depth is unknown or potentially very large. Iteration avoids StackOverflowError on skewed trees and gives you finer control over memory.
+
+Q: What is the main risk of deep recursion in Java or Python?
+A: Stack overflow. The call stack has a limited size. A skewed tree with thousands of nodes can crash a recursive solution.
+
+Q: How do you convert a recursive tree traversal into an iterative one?
+A: Use an explicit stack. Push the root. While the stack is not empty, pop a node, process it, and push its children. For inorder, push all left children first, then process, then move right.
+
+Q: What is tail recursion and why does it matter?
+A: Tail recursion is when the recursive call is the very last operation in the function. In theory it can be optimized into iteration, but Java does not guarantee this optimization, so do not rely on it in interviews.
+
+Q: What is the time and space complexity trade-off between recursion and iteration for tree traversals?
+A: Both are O n time. Recursion uses O h implicit stack space. Iteration uses O h explicit stack space. The difference is safety and control, not Big O.
+
+Q: What is the average time complexity of hash map get put and remove?
+A: O 1 average case.
+
+Q: What is the worst case time complexity of hash map operations and why?
+A: O n when all keys hash to the same bucket, creating a long chain or tree. This happens with a bad hash function or deliberate collision attacks.
+
+Q: What is load factor in a hash map?
+A: The ratio of entries to buckets. When it exceeds a threshold, usually 0.75, the hash map resizes to maintain performance.
+
+Q: What happens during a hash map resize?
+A: A new larger array is created and all existing entries are rehashed into the new buckets. This single operation is O n but amortized over many inserts.
+
+Q: Why can hash maps not efficiently support range queries?
+A: Hash maps scatter keys randomly across buckets. To find all keys in a range, you must scan every bucket, which is O n.
+
+Q: When do you choose TreeMap over HashMap?
+A: When you need sorted order, range queries, ceiling, floor, or first and last operations. TreeMap provides O log n guaranteed time.
+
+Q: What is the difference between separate chaining and open addressing for collision resolution?
+A: Separate chaining stores colliding entries in a linked list or tree at each bucket. Open addressing probes for the next empty slot in the array.
+
+Q: Why is a good hash function important?
+A: It distributes keys uniformly across buckets, minimizing collisions and keeping operations close to O 1.
+
+Q: What is the time complexity of BST search insert and delete?
+A: O h where h is height. O log n for balanced trees. O n for skewed trees.
+
+Q: What does inorder traversal of a BST produce?
+A: A sorted ascending sequence of values.
+
+Q: How do you validate a BST recursively?
+A: Pass valid min and max bounds down the tree. Each node must be strictly greater than min and strictly less than max. Left child inherits the parent's value as new max. Right child inherits it as new min.
+
+Q: How do you validate a BST iteratively?
+A: Simulate inorder traversal with a stack. Keep track of the previously visited value. If the current value is ever less than or equal to the previous value, the tree is invalid.
+
+Q: Why is iterative BST validation safer for production code?
+A: It uses heap space for an explicit stack instead of the limited call stack, preventing stack overflow on deep or skewed trees.
+
+Q: How do you find the Lowest Common Ancestor in a BST?
+A: Compare the two target values with the current node. If both are smaller, go left. If both are larger, go right. Otherwise the current node is the LCA because the values diverge here.
+
+Q: Why is LCA in a BST easier than LCA in a regular binary tree?
+A: In a BST you can use value comparisons to decide which subtree to search. In a regular binary tree you must search both subtrees and check where the nodes are found.
+
+Q: How do you find the Kth smallest element in a BST?
+A: Perform iterative inorder traversal with a stack. Count nodes as you visit them. Stop and return when the count equals k.
+
+Q: What is the space complexity of Kth smallest using iterative inorder?
+A: O h for the explicit stack, where h is the height of the tree.
+
+Q: How do you perform a range query in a BST?
+A: Use the BST property to prune branches. If a node value is less than the low bound, only search the right subtree. If greater than the high bound, only search the left subtree. Otherwise process the node and search both children.
+
+Q: What is the time complexity of a BST range query?
+A: O log n plus k where k is the number of results in the range. Pruning avoids visiting irrelevant subtrees.
+
+Q: What is the successor of a node in a BST?
+A: The node with the smallest value greater than the current node. Go right once, then left as far as possible.
+
+Q: What is the predecessor of a node in a BST?
+A: The node with the largest value smaller than the current node. Go left once, then right as far as possible.
+
+Q: What are the three cases for deleting a node in a BST?
+A: Leaf node: simply remove it. One child: replace the node with its child. Two children: replace the node with its inorder successor or predecessor, then delete that successor or predecessor from its original position.
+
+Q: What is a self-balancing BST and why does it matter?
+A: A BST that automatically keeps height near log n after insertions and deletions. Examples are AVL trees and Red-Black trees. Java TreeMap uses Red-Black tree.
+
+Q: What is the standard binary search template using left less than right?
+A: While left is less than right, set mid to left plus right minus left divided by two. If condition is met, set right to mid. Else set left to mid plus one. Return left.
+
+Q: Why use left less than right instead of left less than or equal to right?
+A: The left less than right loop invariant guarantees termination and leaves you with left equal to right as the exact answer, avoiding off-by-one errors.
+
+Q: Why calculate mid as left plus right minus left divided by two?
+A: To prevent integer overflow. In languages with fixed-size integers, left plus right can overflow before the division.
+
+Q: What is binary search on answer space?
+A: When the input array is not sorted but the possible answers form a sorted range. You binary search the range of possible answers instead of the input itself.
+
+Q: What is the sliding window technique used for?
+A: Finding optimal contiguous subarrays or substrings that satisfy a specific constraint, like maximum length with all unique characters.
+
+Q: How does the sliding window work?
+A: Expand the right pointer to include new elements. When the constraint is violated, shrink the left pointer until the constraint holds again. Track the best valid window seen.
+
+Q: What is the time complexity of sliding window algorithms?
+A: O n. Each element is visited at most twice, once by the right pointer and once by the left pointer.
+
+Q: What data structure do you use to track elements inside a sliding window?
+A: A HashSet for existence checks, or a HashMap for frequency counts and character positions.
+
+Q: In longest substring without repeating characters, what is the window constraint?
+A: All characters inside the window must be unique. When a duplicate is found at the right pointer, move the left pointer past the previous occurrence of that character.
+
+Q: What is the difference between BFS and DFS?
+A: BFS uses a queue and explores nodes level by level. DFS uses a stack or recursion and explores as deep as possible along one branch before backtracking.
+
+Q: When should you use BFS on a graph?
+A: Use BFS when you need the shortest path in an unweighted graph, or when you need to process nodes level by level.
+
+Q: When should you use DFS on a graph?
+A: Use DFS for cycle detection, topological sorting, finding connected components, or when you need to explore a full path before considering alternatives.
+
+Q: How do you detect a cycle in a directed graph using DFS?
+A: Track the recursion stack. If you encounter a node that is already in the current recursion stack, a cycle exists. Alternatively use Kahn's algorithm with in-degree counting for BFS.
+
+Q: How do you detect a cycle in an undirected graph using DFS?
+A: Track visited nodes and the parent. If you reach a visited node that is not the parent, a cycle exists.
+
+Q: What is the time and space complexity of BFS and DFS on a graph?
+A: Time is O V plus E. Space is O V for the visited set and queue or stack.
+
+Q: What is the difference between an adjacency list and an adjacency matrix?
+A: Adjacency list stores neighbors for each node, using O V plus E space. Adjacency matrix is a V by V grid using O V squared space. Lists are better for sparse graphs.
+
+Q: What is topological sort and when is it used?
+A: An ordering of nodes in a directed acyclic graph such that for every edge from u to v, u comes before v. Used for scheduling tasks with dependencies.
+
+Q: What are two ways to compute topological sort?
+A: Kahn's algorithm using BFS and in-degree counting, or DFS with a post-order stack.
+
+Q: What is a bipartite graph and how do you check for it?
+A: A graph whose nodes can be divided into two sets with no edges within the same set. Check by BFS or DFS coloring, ensuring no adjacent nodes share the same color.
+
+Q: What does amortized time complexity mean?
+A: The average time per operation over a sequence of operations. For example, ArrayList add is O 1 amortized even though occasional resizing is O n.
+
+Q: What is the difference between worst case and average case time complexity?
+A: Worst case is the maximum time for any input of size n. Average case is the expected time over all possible inputs, assuming a probability distribution.
+
+Q: What is the space time trade-off?
+A: Using more memory to store precomputed results or indexes in order to reduce computation time, or using less memory at the cost of slower algorithms.
+
+Q: When is O n space considered acceptable in an interview?
+A: When the input itself is O n and the algorithm requires tracking visited nodes, recursion stacks, or auxiliary data structures proportional to the input.
+
+Q: When should you avoid O n space?
+A: When the problem explicitly asks for O 1 space, or when the input is already large and duplicating it would cause memory issues.
+
+Q: What is Big O notation used for?
+A: Describing the upper bound of an algorithm's growth rate as the input size approaches infinity. It abstracts away constants and lower-order terms.
+
+Q: Why do we drop constants and lower-order terms in Big O?
+A: Because we care about scalability and growth rate for large inputs, not exact milliseconds or small input performance.
+
+Q: What is the time complexity of building a heap from an unsorted array?
+A: O n using the heapify approach, not O n log n.
+
+Q: What is the difference between a min-heap and a max-heap?
+A: In a min-heap the parent is smaller than its children. In a max-heap the parent is larger than its children.
+
+Q: What is the time complexity of heap insert and extract min or max?
+A: O log n.
+
+Q: What is a deque and why is it useful?
+A: A double-ended queue supporting add and remove from both ends in O 1. Useful for sliding window maximum problems and BFS.
+
+Q: What is a Trie?
+A: A prefix tree where each node represents a character. Paths from root to node form prefixes. Used for autocomplete and dictionary problems.
+
+Q: What is a Union-Find data structure?
+A: A disjoint set for tracking connected components. Supports find and union in nearly O 1 with path compression and union by rank.
+
+Q: What is memoization?
+A: Caching results of expensive function calls to avoid redundant computation. Top-down dynamic programming.
+
+Q: What is tabulation?
+A: Bottom-up dynamic programming. Fills a table iteratively without recursion, often using less stack space.
+
+Q: What two properties must a problem have to be solvable with dynamic programming?
+A: Optimal substructure and overlapping subproblems.
+
+Q: What is the difference between a greedy algorithm and dynamic programming?
+A: Greedy makes the locally optimal choice at each step without reconsidering. Dynamic programming explores all choices and stores subproblem solutions.
+
+Q: When does a greedy algorithm guarantee an optimal solution?
+A: When the problem has the greedy choice property and optimal substructure. Examples include interval scheduling and minimum spanning tree.
+
+Q: What is backtracking?
+A: A form of DFS that explores all possible choices, and undoes the last choice when it hits a dead end. Used for combinations, permutations, and constraint satisfaction.
+
+Q: What is the two-pointer technique?
+A: Using two indices, often starting at opposite ends or both at the start, to traverse a structure in O n time and O 1 space.
+
+Q: What is the fast and slow pointer technique used for?
+A: Detecting cycles in linked lists or finding the middle element without knowing the length.
+
+Q: What is the difference between a stable and unstable sort?
+A: Stable sorts preserve the relative order of equal elements. Unstable sorts do not guarantee this.
+
+Q: What is the difference between a process and a thread?
+A: A process has its own memory space. Threads share the same memory space within a process. Context switching between threads is cheaper.
+
+Q: What is a race condition?
+A: When the outcome depends on the relative timing of events, such as two threads reading and writing shared data without synchronization.
+
+Q: What is a deadlock?
+A: When two or more threads are blocked forever, each waiting for a resource held by another.
+
+Q: What is the difference between a mutex and a semaphore?
+A: A mutex allows only one thread to access a resource and must be released by the same thread. A semaphore can allow multiple threads and can be released by any thread.
+
+Q: What is the difference between a blocking queue and a regular queue?
+A: A blocking queue waits for space to become available when inserting, or waits for elements to become available when removing. Used for producer-consumer patterns.
+
+Q: What is the difference between a stack and a queue?
+A: Stack is last in first out. Queue is first in first out.
+
+Q: What is a priority queue and what backs it?
+A: A queue where elements are served based on priority, not insertion order. Typically backed by a binary heap.
+
+Q: What is clean code?
+A: Code that is easy to understand, easy to change, well-tested, and free of unnecessary duplication.
+
+Q: What is the single most important rule of clean code naming?
+A: Names should reveal intent. A variable name should answer why it exists, what it does, and how it is used.
+
+Q: Why should functions do only one thing?
+A: Functions that do one thing are easier to understand, test, and reuse. If you can extract another function from it, it is doing more than one thing.
+
+Q: What is the ideal number of arguments for a function?
+A: Zero is best. One is fine. Two is acceptable. Three should be avoided. More than three requires very strong justification.
+
+Q: What is a guard clause?
+A: An early return that handles edge cases or invalid states at the top of a function, reducing nesting and improving readability.
+
+Q: Why are early returns better than deep nesting?
+A: They reduce cognitive load by eliminating else blocks and allowing the reader to understand exit conditions immediately.
+
+Q: What is a side effect in a function and why avoid it?
+A: A side effect is any change to system state or observable interaction beyond returning a value. Avoid them because they make functions unpredictable and harder to test.
+
+Q: What is the difference between a comment that explains code and one that explains intent?
+A: Comments should explain why a decision was made, not what the code is doing. If the code needs comments to explain what it does, the code is not clean enough.
+
+Q: What is a magic number and how do you fix it?
+A: A raw numeric value with unexplained meaning. Fix it by extracting it into a named constant.
+
+Q: What is code duplication and why is it harmful?
+A: Repeating the same logic in multiple places. It increases maintenance burden because changes must be made in every copy.
+
+Q: What is the Extract Method refactoring?
+A: Taking a block of code and moving it into a new method named after what it does, then calling that method.
+
+Q: What is the Rename refactoring?
+A: Changing the name of a variable, method, or class to better reflect its purpose and improve readability.
+
+Q: What is the Introduce Explaining Variable refactoring?
+A: Extracting a complex expression into a well-named local variable to make the code self-documenting.
+
+Q: What is the Replace Temp with Query refactoring?
+A: Replacing a temporary variable with a method call if the computation is simple and the method name is descriptive.
+
+Q: What is the Decompose Conditional refactoring?
+A: Breaking complex conditional logic into smaller boolean methods or variables with meaningful names.
+
+Q: What is the Consolidate Conditional Expression refactoring?
+A: Combining multiple conditions that lead to the same result into a single boolean expression or method.
+
+Q: What is the Remove Dead Code refactoring?
+A: Deleting unused methods, variables, classes, or commented-out code that no longer serves a purpose.
+
+Q: What is the Split Loop refactoring?
+A: Separating a loop that does multiple things into multiple loops, each doing one thing, to improve clarity.
+
+Q: What is the Replace Conditional with Polymorphism refactoring?
+A: Using inheritance and method overriding to handle variations instead of switch statements or long if-else chains.
+
+Q: What is the Move Method refactoring?
+A: Moving a method to the class that uses it most or where it logically belongs, reducing coupling.
+
+Q: What is the Extract Class refactoring?
+A: Creating a new class and moving fields and methods into it when a class has grown too large or has multiple responsibilities.
+
+Q: What is the first step in debugging?
+A: Reproduce the bug consistently. If you cannot reproduce it, you cannot verify that you fixed it.
+
+Q: What is rubber duck debugging?
+A: Explaining your code line by line to an inanimate object or person. The act of explaining often reveals the bug.
+
+Q: What is binary search debugging?
+A: Commenting out or disabling half the code to narrow down where the bug lives, repeatedly halving the search space.
+
+Q: What should you check first when a null pointer exception occurs?
+A: Trace backwards to find which reference is null and why it was not initialized or was set to null unexpectedly.
+
+Q: What is the difference between a syntax error and a logic error?
+A: Syntax error prevents compilation. Logic error compiles but produces incorrect results.
+
+Q: Why should you write a failing test before fixing a bug?
+A: It proves the bug exists, documents the expected behavior, and prevents regression.
+
+Q: What is a regression test?
+A: A test that verifies a previously fixed bug does not reappear after future changes.
+
+Q: What is the Single Responsibility Principle?
+A: A class or module should have one, and only one, reason to change.
+
+Q: What is the Open Closed Principle?
+A: Software entities should be open for extension but closed for modification.
+
+Q: What is the Liskov Substitution Principle?
+A: Subtypes must be substitutable for their base types without altering the correctness of the program.
+
+Q: What is the Interface Segregation Principle?
+A: Clients should not be forced to depend on interfaces they do not use.
+
+Q: What is the Dependency Inversion Principle?
+A: Depend on abstractions, not concretions. High-level modules should not depend on low-level modules.
+
+Q: What is Clean Architecture?
+A: An architecture where dependencies point inward. Domain logic is in the center and knows nothing about frameworks, databases, or UI.
+
+Q: What are the typical layers in Clean Architecture from inner to outer?
+A: Entities, Use Cases, Interface Adapters, Frameworks and Drivers.
+
+Q: Why should domain logic not depend on frameworks?
+A: So you can swap databases, web frameworks, or UI technologies without changing business rules.
+
+Q: What is dependency injection?
+A: Providing a class with its dependencies from the outside rather than letting it create them internally. Promotes loose coupling and testability.
+
+Q: What is inversion of control?
+A: A principle where the framework or container controls the flow and object creation instead of the application code.
+
+Q: What is the Repository pattern?
+A: An abstraction over data access that mediates between the domain and data mapping layers, allowing the domain to remain persistence-ignorant.
+
+Q: What is the Strategy pattern?
+A: Defining a family of algorithms, encapsulating each one, and making them interchangeable. Useful for varying behavior at runtime.
+
+Q: What is the Observer pattern?
+A: A publish-subscribe pattern where objects notify dependents automatically when their state changes.
+
+Q: What is the Adapter pattern?
+A: Wrapping an incompatible interface to make it compatible with what a client expects without modifying the original code.
+
+Q: What is the Decorator pattern?
+A: Adding behavior to an object dynamically by wrapping it in another object that implements the same interface.
+
+Q: What is the Factory pattern?
+A: Creating objects without exposing the instantiation logic to the client, delegating creation to a factory method or class.
+
+Q: What is the Builder pattern?
+A: Constructing complex objects step by step, separating construction from representation.
+
+Q: What is the Singleton pattern and what are its dangers?
+A: Ensures only one instance exists. Dangers include hidden global state, testing difficulty, thread safety issues, and tight coupling.
+
+Q: What is the difference between cohesion and coupling?
+A: Cohesion measures how related the responsibilities within a module are. Coupling measures dependency between modules. Aim for high cohesion and low coupling.
+
+Q: What is an anti-corruption layer?
+A: A layer that translates between a legacy system and a new domain model to prevent the legacy design from leaking into the new system.
+
+Q: What is the difference between a monolith and microservices?
+A: Monolith is a single deployable unit. Microservices are independently deployable services that communicate over a network.
+
+Q: What is a bounded context in domain-driven design?
+A: A boundary within which a domain model is defined and valid. Different bounded contexts can have different models for the same real-world concept.
+
+Q: What is CQRS?
+A: Command Query Responsibility Segregation. Separating read and write operations into different models to optimize each independently.
+
+Q: What is event sourcing?
+A: Storing state changes as a sequence of events rather than just the current state, allowing state reconstruction by replaying events.
+
+Q: What is the Saga pattern?
+A: Managing distributed transactions as a sequence of local transactions, with compensating transactions to undo steps on failure.
+
+Q: What is the Circuit Breaker pattern?
+A: Preventing cascading failures by stopping requests to a failing service after a threshold, returning a fallback instead.
+
+Q: What is the Bulkhead pattern?
+A: Isolating failures by partitioning resources so that a failure in one partition does not exhaust resources for others.
+
+Q: What is the Retry pattern and what dangers does it carry?
+A: Automatically retrying failed operations. Dangers include retry storms, amplifying load on a struggling service, and masking underlying issues.
+
+Q: What is idempotency and why does it matter for retries?
+A: An operation that produces the same result whether executed once or multiple times. It matters because retries may cause duplicate execution.
+
+Q: What is a fallback in resilience patterns?
+A: An alternative response returned when a service call fails, such as cached data, a default value, or a degraded experience.
+
+Q: What is graceful degradation?
+A: Reducing functionality when resources are limited or dependencies fail, rather than failing completely.
+
+Q: What is a health check endpoint?
+A: An endpoint that reports whether a service is running and ready to handle requests.
+
+Q: What is the difference between a liveness probe and a readiness probe?
+A: Liveness checks if the process is running and restarts it if not. Readiness checks if it is ready to receive traffic and removes it from the load balancer if not.
+
+Q: What is observability?
+A: The ability to understand the internal state of a system by examining its outputs: logs, metrics, and traces.
+
+Q: What is structured logging?
+A: Logging in a machine-readable format like JSON, making it easier to query, aggregate, and analyze.
+
+Q: What is the difference between logging and tracing?
+A: Logging records discrete events. Tracing follows a single request across multiple services with a unique trace ID.
+
+Q: What is a golden signal in monitoring?
+A: Latency, traffic, errors, and saturation. The four key metrics for understanding system health.
+
+Q: What is technical debt?
+A: The implied cost of additional rework caused by choosing an easy solution now instead of a better approach that would take longer.
+
+Q: What is refactoring?
+A: Restructuring existing code without changing its external behavior to improve readability, maintainability, and performance.
+
+Q: When should you refactor code?
+A: When you are about to add a feature and the existing code makes it difficult, or when you have understood the problem better after initial implementation.
+
+Q: What is the boy scout rule in software development?
+A: Always leave the code cleaner than you found it. Make small improvements every time you touch a file.
+
+Q: What is YAGNI?
+A: You Ain't Gonna Need It. Do not add functionality until it is actually necessary.
+
+Q: What is DRY?
+A: Do Not Repeat Yourself. Every piece of knowledge should have a single, unambiguous representation in the system.
+
+Q: What is KISS?
+A: Keep It Simple, Stupid. Prefer simple solutions over clever ones unless performance demands complexity.
+
+Q: What is the difference between a shallow copy and a deep copy?
+A: Shallow copy duplicates the object but references the same nested objects. Deep copy duplicates everything recursively.
+
+Q: What is immutability and why is it beneficial?
+A: An object whose state cannot change after creation. Benefits include thread safety, simpler reasoning, and preventing accidental modifications.
+
+Q: What is defensive copying?
+A: Returning copies of internal mutable objects instead of references to prevent external code from modifying internal state.
+
+Q: What is the Law of Demeter?
+A: A module should only talk to its immediate friends, not strangers. Do not chain method calls that reach deep into another object's internals.
+
+Q: What is a null object pattern?
+A: Using a default object that does nothing instead of returning null, eliminating null checks throughout the codebase.
+
+Q: What is a data transfer object?
+A: A simple object used to transfer data between layers or systems, typically containing no business logic.
+
+Q: What is a value object?
+A: An immutable object defined by its attributes rather than identity, like a date range or money amount.
+
+Q: What is an entity in domain-driven design?
+A: An object defined by its identity rather than its attributes. Two entities with the same attributes but different IDs are different entities.
+
+Q: What is an aggregate in domain-driven design?
+A: A cluster of domain objects that can be treated as a single unit, with one root entity controlling access to the others.
+
+Q: What is a domain event?
+A: An event that captures something that happened in the domain that other parts of the system might care about.
+
+Q: What is test-driven development?
+A: Writing a failing test first, then writing the minimum code to pass it, then refactoring while keeping tests green.
+
+Q: What is the red green refactor cycle?
+A: Red: write a failing test. Green: write the simplest code to pass. Refactor: improve the code without changing behavior.
+
+Q: What is mocking in unit testing?
+A: Replacing real dependencies with simulated objects to control behavior and verify interactions in isolation.
+
+Q: What is the difference between a stub and a mock?
+A: A stub provides canned answers to calls. A mock verifies that specific methods were called with expected arguments.
+
+Q: What is code coverage and what is its limitation?
+A: The percentage of code executed by tests. High coverage does not guarantee correctness if the tests do not assert the right things.
+
+Q: What is the difference between unit tests and integration tests?
+A: Unit tests isolate a single component with mocks. Integration tests verify that multiple real components work together.
+
+Q: What is a flaky test?
+A: A test that passes or fails inconsistently without code changes, often due to timing, external dependencies, or shared state.
+
+Q: What is the Arrange Act Assert pattern in testing?
+A: Arrange: set up the test data and dependencies. Act: execute the behavior being tested. Assert: verify the expected outcome.
+
+Q: What is property-based testing?
+A: Testing by defining properties that should always hold, then generating random inputs to find violations.
+
+Q: What is contract testing?
+A: Verifying that a service provider satisfies the expectations of its consumers without running the full system together.
+
+Q: What are the three BST traversal orders and what does each visit first?
+A: Preorder visits root then left then right. Inorder visits left then root then right. Postorder visits left then right then root.
+
+Q: What does inorder traversal of a BST always produce?
+A: A sorted ascending sequence of values.
+
+Q: What is the time complexity of BST search insert and delete in average case?
+A: O log n when the tree is balanced.
+
+Q: What is the worst case time complexity of BST operations?
+A: O n when the tree is skewed into a linked list.
+
+Q: How do you validate a BST recursively?
+A: Pass min and max bounds down the tree. Each node must be strictly greater than min and strictly less than max. Left child inherits current as max. Right child inherits current as min.
+
+Q: Why does the iterative BST validation approach use a stack?
+A: It simulates inorder traversal. You keep track of the previous visited node and ensure current is always larger.
+
+Q: Why is iterative validation safer than recursive for deep trees?
+A: It uses heap space for an explicit stack instead of the call stack. Recursive validation risks StackOverflowError on skewed trees with thousands of nodes.
+
+Q: What is the Lowest Common Ancestor in a BST?
+A: The node where the search paths to two target values diverge. If both values are smaller go left. If both larger go right. Otherwise current node is the LCA.
+
+Q: Why is LCA in a BST easier than LCA in a regular binary tree?
+A: In a BST you compare values to decide direction. In a regular binary tree you must search both subtrees because there is no ordering property.
+
+Q: How do you find the Kth smallest element in a BST?
+A: Perform inorder traversal and count nodes as you visit them. Stop when count equals k.
+
+Q: What is the space complexity of Kth smallest using iterative inorder?
+A: O h where h is the height of the tree for the explicit stack.
+
+Q: What is a range query in a BST?
+A: Finding all nodes with values between low and high inclusive. Prune branches if node value is less than low only search right. If greater than high only search left.
+
+Q: What are the three cases for deleting a node in a BST?
+A: Leaf node remove directly. One child replace node with that child. Two children replace with inorder successor or predecessor then delete that successor.
+
+Q: What is the inorder successor of a node?
+A: The smallest node in the right subtree. Go right once then left as far as possible.
+
+Q: What is the standard binary search template using left less than right?
+A: While left is less than right set mid to left plus right minus left divided by 2. If condition met move right to mid else move left to mid plus 1. Return left.
+
+Q: Why calculate mid as left plus right minus left divided by 2 instead of left plus right divided by 2?
+A: To prevent integer overflow when left and right are near Integer MAX VALUE.
+
+Q: Why use left less than right instead of left less than or equal to right in binary search?
+A: It guarantees termination and avoids infinite loops. The loop ends with left equal to right which is the answer index.
+
+Q: What is binary search on answer space?
+A: When the input is not sorted but the possible answer range is sorted. Example finding minimum eating speed or square root.
+
+Q: When does binary search not work?
+A: When the search space is not sorted or does not have a monotonic property that lets you discard half.
+
+Q: What is the sliding window technique?
+A: Two pointers define a dynamic subarray or substring. Expand the right pointer to include elements. Contract the left pointer when the constraint is violated.
+
+Q: What is the time complexity of sliding window algorithms?
+A: O n because each element is visited at most twice once by the right pointer and once by the left.
+
+Q: In longest substring without repeating characters what is the window constraint?
+A: All characters inside the window must be unique.
+
+Q: What data structure tracks characters in a sliding window for substring problems?
+A: A HashSet for existence checks or a HashMap for character to last seen index.
+
+Q: When should you use sliding window instead of nested loops?
+A: When the problem asks for a contiguous subarray or substring that satisfies a condition and brute force would be O n squared.
+
+Q: What is the difference between BFS and DFS?
+A: BFS uses a queue and explores level by level. DFS uses a stack or recursion and explores as deep as possible before backtracking.
+
+Q: When does BFS find the shortest path?
+A: In an unweighted graph. The first time you reach a node is via the shortest path from the source.
+
+Q: When is DFS preferred over BFS?
+A: For cycle detection topological sort exploring all paths or when you need to process a full branch before moving on.
+
+Q: Why does DFS use less memory than BFS on a wide tree?
+A: DFS stack depth is O h where h is height. BFS queue can hold an entire level up to O n over 2 for a complete binary tree.
+
+Q: How do you detect a cycle in a directed graph using DFS?
+A: Use three colors or states. White is unvisited. Gray is in current recursion stack. Black is fully processed. If you encounter a gray node there is a cycle.
+
+Q: How do you solve Number of Islands?
+A: Iterate through the grid. When you find an unvisited land cell increment the count and run DFS or BFS to mark the entire island as visited.
+
+Q: Why can you mutate the input grid in Number of Islands?
+A: To mark visited land cells as water. This saves O n times m space that a separate visited matrix would require.
+
+Q: What is the time and space complexity of Number of Islands?
+A: Time O n times m to visit every cell once. Space O n times m in worst case for the recursion stack if the entire grid is land.
+
+Q: What are the trade-offs between recursion and iteration?
+A: Recursion is cleaner for trees and naturally divided subproblems but risks stack overflow and hides state. Iteration uses explicit stacks or queues safer for deep structures and easier to optimize.
+
+Q: When should you prefer iteration over recursion in an interview?
+A: When the tree depth is unknown or potentially very large. When tail recursion optimization is not guaranteed by the language.
+
+Q: What is the time complexity of HashMap get put and remove?
+A: O 1 average case. O n worst case if all keys hash to the same bucket causing a long chain.
+
+Q: What is the time complexity of TreeMap get put and remove?
+A: O log n guaranteed because it is a Red Black tree.
+
+Q: When do you choose TreeMap over HashMap?
+A: When you need sorted order range queries ceiling floor or ordered iteration.
+
+Q: When do you choose HashMap over TreeMap?
+A: When you only need fast lookups and do not care about ordering.
+
+Q: What is the difference between a HashSet and a TreeSet?
+A: HashSet uses a HashMap for O 1 operations with no ordering. TreeSet uses a TreeMap for O log n operations with sorted ordering.
+
+Q: What causes a HashMap to degrade to O n operations?
+A: A poor hash function that causes many collisions. All keys hashing to the same bucket creates a linked list or tree of entries.
+
+Q: How does Java HashMap handle collisions?
+A: It chains entries in a linked list. If a bucket exceeds 8 entries and the table is large enough it converts to a Red Black tree for O log n lookup in that bucket.
+
+Q: What is the load factor in a HashMap and what is the default?
+A: The ratio of entries to buckets. Default is 0.75. When exceeded the HashMap doubles in size and rehashes.
+
+Q: What is amortized time complexity?
+A: The average time per operation over a sequence. ArrayList add is O 1 amortized even though occasional resizing is O n.
+
+Q: What is the difference between time complexity and space complexity?
+A: Time complexity measures how runtime grows with input size. Space complexity measures how memory usage grows with input size.
+
+Q: What does Big O notation describe?
+A: The upper bound of growth rate. It describes the worst case scaling behavior as input size approaches infinity.
+
+Q: What is the difference between O n and O n squared?
+A: O n means linear growth. Doubling input doubles work. O n squared means quadratic growth. Doubling input quadruples work.
+
+Q: Why is O log n considered very efficient?
+A: Because the problem size is halved at each step. Even for billions of items log n is around 30.
+
+Q: What is tail recursion?
+A: A recursive call that is the last operation in the function. Some languages optimize it to iteration but Java does not guarantee this.
+
+Q: What is memoization?
+A: Caching results of expensive function calls to avoid redundant computation. Top down dynamic programming.
+
+Q: What is tabulation?
+A: Bottom up dynamic programming. Fills a table iteratively without recursion stack overhead.
+
+Q: What are the two properties required for dynamic programming?
+A: Optimal substructure and overlapping subproblems.
+
+Q: What is a greedy algorithm?
+A: Makes the locally optimal choice at each step hoping for a global optimum. Does not always yield the optimal solution.
+
+Q: When does a greedy algorithm work?
+A: When the problem has the greedy choice property and optimal substructure. Examples include interval scheduling and minimum spanning tree.
+
+Q: What is the two pointer technique?
+A: Using two indices often starting at opposite ends or both at the start to traverse a structure in O n time and O 1 space.
+
+Q: What is the fast and slow pointer technique?
+A: Two pointers moving at different speeds. Used to detect cycles in linked lists or find the middle element.
+
+Q: What is a deque and when is it useful?
+A: A double ended queue supporting add and remove from both ends in O 1. Useful in sliding window maximum problems.
+
+Q: What is a priority queue and what backs it?
+A: A queue where elements are ordered by priority. Backed by a binary heap with O log n offer and poll.
+
+Q: What is the difference between a stack and a queue?
+A: Stack is LIFO last in first out. Queue is FIFO first in first out.
+
+Q: What is a sentinel node?
+A: A dummy node placed at the head or tail of a linked list to simplify edge cases like empty lists or head removal.
+
+Q: What is backtracking?
+A: A form of DFS that explores all possible choices and undoes the last choice when a dead end is reached.
+
+Q: What is a complete binary tree?
+A: All levels are completely filled except possibly the last level which is filled from left to right.
+
+Q: What is a perfect binary tree?
+A: All internal nodes have two children and all leaves are at the same level.
+
+Q: What is the height of a balanced BST with n nodes?
+A: O log n.
+
+Q: What is the minimum height of a binary tree with n nodes?
+A: Floor of log n. Achieved by a complete or balanced tree.
+
+Q: What is the maximum number of nodes in a binary tree of height h?
+A: 2 to the power h plus 1 minus 1.
+
+Q: What is the minimum number of nodes in a binary tree of height h?
+A: h plus 1 in a skewed tree.
+
+Q: How many edges are in a tree with n nodes?
+A: n minus 1.
+
+Q: What is a self balancing BST?
+A: A BST that automatically maintains a small height after insertions and deletions. Examples are AVL trees and Red Black trees.
+
+Q: What is the balance factor in an AVL tree?
+A: Height of left subtree minus height of right subtree. Must be minus 1 0 or 1.
+
+Q: What is a Red Black tree?
+A: A self balancing BST where each node is red or black. Root is black. No two red nodes are adjacent. Every path from a node to null has the same number of black nodes.
+
+Q: What is a threaded binary tree?
+A: A tree where null child pointers are repurposed to point to the inorder predecessor or successor.
+
+Q: What is Morris traversal?
+A: An inorder traversal using O 1 space by temporarily creating threaded links to predecessors.
+
+Q: What is the diameter of a binary tree?
+A: The longest path between any two nodes. It may or may not pass through the root.
+
+Q: What is path sum in a binary tree?
+A: The sum of node values along a path typically from root to leaf.
+
+Q: What is a bipartite graph?
+A: A graph whose nodes can be divided into two sets such that no edge connects nodes within the same set.
+
+Q: How do you check if a graph is bipartite?
+A: Use BFS or DFS to color nodes with two colors. If you find an edge connecting same colors it is not bipartite.
+
+Q: What is topological sort?
+A: An ordering of nodes in a directed acyclic graph such that for every edge u to v node u comes before v.
+
+Q: What algorithm finds topological sort?
+A: Kahn's algorithm using BFS and in degree counting or DFS with a post order stack.
+
+Q: What is a Union Find data structure?
+A: A disjoint set for tracking connected components. Supports find and union in nearly O 1 with path compression.
+
+Q: What is path compression in Union Find?
+A: Flattening the structure during find so that future queries are faster.
+
+Q: What is union by rank in Union Find?
+A: Attaching the shorter tree under the taller tree to keep the structure flat.
+
+Q: What is an adjacency matrix?
+A: A 2D array where cell i j indicates an edge between node i and node j. Good for dense graphs and O 1 edge lookup.
+
+Q: What is an adjacency list?
+A: An array or map where each node points to a list of its neighbors. Good for sparse graphs. Space O V plus E.
+
+Q: When is an adjacency matrix better than an adjacency list?
+A: When the graph is dense or you need O 1 edge existence checks.
+
+Q: When is an adjacency list better than an adjacency matrix?
+A: When the graph is sparse. Space is O V plus E instead of O V squared.
+
+Q: What is a directed acyclic graph?
+A: A directed graph with no cycles. Required for topological sorting.
+
+Q: What is in degree and out degree?
+A: In degree is the number of edges entering a node. Out degree is the number of edges leaving a node.
+
+Q: What is a strongly connected component?
+A: A maximal subgraph where every node is reachable from every other node.
+
+Q: What is Kosaraju's algorithm?
+A: An algorithm to find strongly connected components using two passes of DFS.
+
+Q: What is Dijkstra's algorithm used for?
+A: Shortest path from a source to all nodes in a weighted graph with non negative edges.
+
+Q: What is the time complexity of Dijkstra with a priority queue?
+A: O E log V.
+
+Q: Why does Dijkstra fail with negative edge weights?
+A: Because once a node is popped from the priority queue its shortest distance is assumed final. Negative weights later could invalidate this.
+
+Q: What algorithm handles negative weights?
+A: Bellman Ford with time O V times E.
+
+Q: What is the Bellman Ford algorithm used for?
+A: Finding shortest paths from a single source in a graph that may contain negative weight edges.
+
+Q: What is the Floyd Warshall algorithm?
+A: An all pairs shortest path algorithm with time O V cubed. Uses dynamic programming.
+
+Q: What is the difference between a minimum spanning tree and a shortest path tree?
+A: MST connects all nodes with minimum total edge weight. Shortest path tree connects one source to all others with minimum path cost.
+
+Q: What is Kruskal's algorithm?
+A: A greedy MST algorithm that sorts edges by weight and adds them if they do not form a cycle. Uses Union Find.
+
+Q: What is Prim's algorithm?
+A: A greedy MST algorithm that grows the tree from an arbitrary start node adding the cheapest edge connected to the tree.
+
+Q: What is a spanning tree?
+A: A subgraph that includes all vertices and is a tree meaning connected and acyclic.
+
+Q: What is the handshake lemma?
+A: The sum of all vertex degrees equals twice the number of edges.
