@@ -59,6 +59,7 @@ body {
   border: 0;
   color: inherit;
   text-align: center;
+  overflow-y: auto;
   cursor: pointer;
   touch-action: pan-y;
 }
